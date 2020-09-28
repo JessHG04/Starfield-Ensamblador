@@ -2686,3 +2686,28 @@ Hexadecimal [16-Bits]
                              75 .macro cpctm_ld_spbloff REG, W, H
                              76    ld    REG, #W * (H-1)
                              77 .endm
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 52.
+Hexadecimal [16-Bits]
+
+
+
+                              2 
+                              3 .globl entity_size
+                              4 
+                              5 ;; INPUT
+                              6 ;;      IX: Pointer to first entity to render
+                              7 ;;      A: Number of entites to render
+   40AE                       8 physics_move::
+   40AE                       9 _phyloop:
+   40AE F5            [11]   10    push     af
+   40AF DD 7E 00      [19]   11    ld        a, 0(ix)
+   40B2 DD 86 04      [19]   12    add   4(ix)
+   40B5 DD 77 00      [19]   13    ld    0(ix), a
+   40B8 F1            [10]   14    pop      af
+   40B9 3D            [ 4]   15    dec       a
+   40BA C8            [11]   16    ret       z
+                             17 
+   40BB 01 07 00      [10]   18    ld      bc, #entity_size
+   40BE DD 09         [15]   19    add     ix, bc
+   40C0 18 EC         [12]   20    jr _phyloop
+   40C2 C9            [10]   21    ret

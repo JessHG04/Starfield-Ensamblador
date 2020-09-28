@@ -2696,32 +2696,32 @@ Hexadecimal [16-Bits]
                               4 .globl cpct_drawSolidBox_asm
                               5 .globl entity_size
                               6 
-   4063                       7 rendersys_init::
+   40C3                       7 rendersys_init::
                               8 
-   4063 C9            [10]    9     ret
+   40C3 C9            [10]    9     ret
                              10 ;; INPUT
                              11 ;;      IX: Pointer to first entity to render
                              12 ;;      A: Number of entites to render
-   4064                      13 rendersys_update::
+   40C4                      13 rendersys_update::
                              14 
-   4064                      15 _renloop:
-   4064 F5            [11]   16     push    af
-   4065 11 00 C0      [10]   17     ld      de, #0xC000
-   4068 DD 4E 00      [19]   18     ld       c, 0(ix)   ;;X
-   406B DD 46 01      [19]   19     ld       b, 1(ix)   ;;Y
-   406E CD 3D 41      [17]   20     call    cpct_getScreenPtr_asm
+   40C4                      15 _renloop:
+   40C4 F5            [11]   16     push    af
+   40C5 11 00 C0      [10]   17     ld      de, #0xC000
+   40C8 DD 4E 00      [19]   18     ld       c, 0(ix)   ;;X
+   40CB DD 46 01      [19]   19     ld       b, 1(ix)   ;;Y
+   40CE CD A6 41      [17]   20     call    cpct_getScreenPtr_asm
                              21 
-   4071 EB            [ 4]   22     ex      de, hl
-   4072 DD 7E 06      [19]   23     ld       a, 6(ix)   ;;Color
-   4075 DD 4E 02      [19]   24     ld       c, 2(ix)   ;;Width
-   4078 DD 46 03      [19]   25     ld       b, 3(ix)   ;;Height
-   407B CD 99 40      [17]   26     call    cpct_drawSolidBox_asm
+   40D1 EB            [ 4]   22     ex      de, hl
+   40D2 DD 7E 06      [19]   23     ld       a, 6(ix)   ;;Color
+   40D5 DD 4E 02      [19]   24     ld       c, 2(ix)   ;;Width
+   40D8 DD 46 03      [19]   25     ld       b, 3(ix)   ;;Height
+   40DB CD 01 41      [17]   26     call    cpct_drawSolidBox_asm
                              27 
-   407E F1            [10]   28     pop     af
-   407F 3D            [ 4]   29     dec     a
-   4080 C8            [11]   30     ret     z
+   40DE F1            [10]   28     pop     af
+   40DF 3D            [ 4]   29     dec     a
+   40E0 C8            [11]   30     ret     z
                              31 
-   4081 01 07 00      [10]   32     ld      bc, #entity_size
-   4084 DD 09         [15]   33     add     ix, bc
-   4086 18 DC         [12]   34     jr _renloop
-   4088 C9            [10]   35     ret
+   40E1 01 07 00      [10]   32     ld      bc, #entity_size
+   40E4 DD 09         [15]   33     add     ix, bc
+   40E6 18 DC         [12]   34     jr _renloop
+   40E8 C9            [10]   35     ret

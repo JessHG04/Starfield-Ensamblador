@@ -1,15 +1,15 @@
 XL2
 H 1 areas 9 global symbols
 M cpct_keyboard
-S max_entities Def0001
+S max_entities Def000A
 S .__.ABS. Def0000
 S entity_size Def0007
-A _CODE size 38 flags 0 addr 0
+A _CODE size 77 flags 0 addr 0
 S _last_elem_ptr Def0002
-S entityman_getNumEntities_A Def0010
-S entityman_create Def0014
+S entityman_getNumEntities_A Def004F
+S entityman_create Def0053
 S _num_entities Def0000
-S entityman_getEntityArray_IX Def000B
+S entityman_getEntityArray_IX Def004A
 S _entity_array Def0004
 T 00 00 00 00 04 00
 R 00 00 00 00 00 04 00 00
@@ -17,19 +17,19 @@ T 04 00
 R 00 00 00 00
 T 04 00
 R 00 00 00 00
-T 0B 00
+T 4A 00
 R 00 00 00 00
-T 0B 00 DD 21 04 00 C9
+T 4A 00 DD 21 04 00 C9
 R 00 00 00 00 00 04 00 00
-T 10 00
+T 4F 00
 R 00 00 00 00
-T 10 00 3A 00 00 C9
+T 4F 00 3A 00 00 C9
 R 00 00 00 00 00 03 00 00
-T 14 00
+T 53 00
 R 00 00 00 00
-T 14 00 EB 2A 00 00 3E 01 95 C8 EB ED 5B 02 00 01
+T 53 00 EB 2A 00 00 3E 0A 95 C8 EB ED 5B 02 00 01
 R 00 00 00 00 00 04 00 00 00 0D 00 00
-T 22 00 07 00 ED B0 3A 00 00 3C 32 00 00 2A 02 00
+T 61 00 07 00 ED B0 3A 00 00 3C 32 00 00 2A 02 00
 R 00 00 00 00 00 07 00 00 00 0B 00 00 00 0E 00 00
-T 30 00 01 07 00 09 22 02 00 C9
+T 6F 00 01 07 00 09 22 02 00 C9
 R 00 00 00 00 00 07 00 00

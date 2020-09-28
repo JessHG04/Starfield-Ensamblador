@@ -2702,28 +2702,33 @@ Hexadecimal [16-Bits]
                              10 .globl entityman_getEntityArray_IX
                              11 .globl entityman_getNumEntities_A
                              12 .globl rendersys_init
-                             13 ;;.globl cpct_waitVSYNC_asm
-                             14 
-   4000 14 01 02 02 FF FF    15 star:    .db 0x14, 0x01, 0x02, 0x02, 0xFF, 0xFF, 0xF0
+                             13 .globl physics_move
+                             14 .globl cpct_waitVSYNC_asm
+                             15 
+   4000 14 01 02 02 FF FF    16 star:    .db 0x14, 0x01, 0x02, 0x02, 0xFF, 0xFF, 0xF0
         F0
-   4007 28 01 02 02 FF FF    16 starr:   .db 0x28, 0x01, 0x02, 0x02, 0XFF, 0xFF, 0xFF
+   4007 28 10 02 02 FF FF    17 starr:   .db 0x28, 0x10, 0x02, 0x02, 0XFF, 0xFF, 0xFF
         FF
-                             17 
-   400E                      18 _main::
-   400E CD 89 40      [17]   19    call cpct_disableFirmware_asm
-                             20 
-                             21    ;;Init systems
-   4011 CD 63 40      [17]   22    call rendersys_init
-                             23 
-   4014 21 00 40      [10]   24    ld    hl, #star
-   4017 CD 3F 40      [17]   25    call entityman_create
-                             26 
-   401A 21 07 40      [10]   27    ld    hl, #starr
-   401D CD 3F 40      [17]   28    call entityman_create
-                             29 
-   4020                      30 loop:
-   4020 CD 36 40      [17]   31    call entityman_getEntityArray_IX
-   4023 CD 3B 40      [17]   32    call entityman_getNumEntities_A
-   4026 CD 64 40      [17]   33    call rendersys_update
-                             34 
-   4029 18 F5         [12]   35    jr    loop
+                             18 
+   400E                      19 _main::
+   400E CD F1 40      [17]   20    call cpct_disableFirmware_asm
+                             21 
+                             22    ;;Init systems
+   4011 CD C3 40      [17]   23    call rendersys_init
+                             24 
+   4014 21 00 40      [10]   25    ld    hl, #star
+   4017 CD 8A 40      [17]   26    call entityman_create
+                             27 
+   401A 21 07 40      [10]   28    ld    hl, #starr
+   401D CD 8A 40      [17]   29    call entityman_create
+                             30 
+   4020                      31 loop:
+   4020 CD 81 40      [17]   32    call entityman_getEntityArray_IX
+   4023 CD 86 40      [17]   33    call entityman_getNumEntities_A
+   4026 CD AE 40      [17]   34    call physics_move
+   4029 CD 81 40      [17]   35    call entityman_getEntityArray_IX
+   402C CD 86 40      [17]   36    call entityman_getNumEntities_A
+   402F CD C4 40      [17]   37    call rendersys_update
+                             38 
+   4032 CD E9 40      [17]   39    call cpct_waitVSYNC_asm
+   4035 18 E9         [12]   40    jr    loop

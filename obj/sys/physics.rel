@@ -1,5 +1,15 @@
 XL2
-H 1 areas 1 global symbols
+H 1 areas 3 global symbols
 M cpct_keyboard
 S .__.ABS. Def0000
-A _CODE size 0 flags 0 addr 0
+S entity_size Ref0000
+A _CODE size 15 flags 0 addr 0
+S physics_move Def0000
+T 00 00
+R 00 00 00 00
+T 00 00
+R 00 00 00 00
+T 00 00 F5 DD 7E 00 DD 86 04 DD 77 00 F1 3D C8 01
+R 00 00 00 00
+T 0E 00 00 00 DD 09 18 EC C9
+R 00 00 00 00 02 02 01 00
