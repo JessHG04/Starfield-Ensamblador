@@ -1,0 +1,25 @@
+DEF .__.ABS. 0x0
+DEF l__DATA 0x0
+DEF max_entities 0x1
+DEF entity_size 0x7
+DEF l__CODE 0x15A
+DEF s__CODE 0x4000
+DEF s__DATA 0x415A
+DEF star 0x4000
+DEF _main 0x400E
+DEF _num_entities 0x402B
+DEF _last_elem_ptr 0x402D
+DEF _entity_array 0x402F
+DEF entityman_getEntityArray_IX 0x4036
+DEF entityman_getNumEntities_A 0x403B
+DEF entityman_create 0x403F
+DEF rendersys_init 0x4063
+DEF rendersys_update 0x4064
+DEF _cpct_disableFirmware 0x4089
+DEF _cpct_removeInterruptHandler 0x4089
+DEF cpct_disableFirmware_asm 0x4089
+DEF cpct_removeInterruptHandler_asm 0x4089
+DEF cpct_drawSolidBox_asm 0x4099
+DEF cpct_getScreenPtr_asm 0x413D
+DEF _cpct_mode_rom_status 0x4159
+LOAD obj/starfield.ihx

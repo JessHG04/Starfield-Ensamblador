@@ -1,0 +1,26 @@
+XL2
+H 2 areas 9 global symbols
+M cpct_keyboard
+S rendersys_update Ref0000
+S entityman_getNumEntities_A Ref0000
+S .__.ABS. Def0000
+S entityman_create Ref0000
+S rendersys_init Ref0000
+S entityman_getEntityArray_IX Ref0000
+S cpct_disableFirmware_asm Ref0000
+A _CODE size 2B flags 0 addr 0
+S _main Def000E
+S star Def0000
+A _DATA size 0 flags 0 addr 0
+T 00 00 14 01 02 02 FF FF F0 28 01 02 02 FF FF FF
+R 00 00 00 00
+T 0E 00
+R 00 00 00 00
+T 0E 00 CD 00 00 CD 00 00 21 00 00 CD
+R 00 00 00 00 02 03 06 00 02 06 04 00 00 09 00 00
+T 18 00 00 00 21 07 00 CD 00 00
+R 00 00 00 00 02 02 03 00 00 05 00 00 02 08 03 00
+T 20 00
+R 00 00 00 00
+T 20 00 CD 00 00 CD 00 00 CD 00 00 18 F5
+R 00 00 00 00 02 03 05 00 02 06 01 00 02 09 00 00
