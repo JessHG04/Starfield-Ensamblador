@@ -2695,45 +2695,46 @@ Hexadecimal [16-Bits]
                               3 ;; ENTITY MANAGER
                               4 ;;
                      0007     5 entity_size == 7 ;;X, Y, W, H, Vx, Vy, C
-                     000A     6 max_entities == 10
+                     0003     6 max_entities == 3
                               7 
    0000 00 00                 8 _num_entities::     .db 0x00, 0x00
    0002 04 00                 9 _last_elem_ptr::    .dw _entity_array
    0004                      10 _entity_array::
    0004                      11     .ds entity_size*max_entities
                              12 
-   004A                      13 entityman_getEntityArray_IX::
-   004A DD 21 04 00   [14]   14     ld      ix, #_entity_array
-   004E C9            [10]   15     ret
+   0019                      13 entityman_getEntityArray_IX::
+   0019 DD 21 04 00   [14]   14     ld      ix, #_entity_array
+   001D C9            [10]   15     ret
                              16 
-   004F                      17 entityman_getNumEntities_A::
-   004F 3A 00 00      [13]   18     ld      a, (_num_entities)
-   0052 C9            [10]   19     ret
+   001E                      17 entityman_getNumEntities_A::
+   001E 3A 00 00      [13]   18     ld      a, (_num_entities)
+   0021 C9            [10]   19     ret
                              20 
                              21 ;;INPUT
                              22 ;;      HL: pointer to entity initializer byte
-   0053                      23 entityman_create::
-   0053 EB            [ 4]   24    ex    de, hl
+   0022                      23 entityman_create::
+   0022 EB            [ 4]   24    ex    de, hl
                              25 
-   0054 2A 00 00      [16]   26    ld     hl, (_num_entities)
-   0057 3E 0A         [ 7]   27    ld     a, #max_entities
+   0023 2A 00 00      [16]   26    ld     hl, (_num_entities)
+   0026 3E 03         [ 7]   27    ld     a, #max_entities
                              28 
-   0059 95            [ 4]   29    sub    l
-   005A C8            [11]   30    ret     z
+   0028 95            [ 4]   29    sub    l
+   0029 C8            [11]   30    ret     z
                              31 
-   005B EB            [ 4]   32     ex    de, hl
+   002A EB            [ 4]   32     ex    de, hl
                              33 
-   005C ED 5B 02 00   [20]   34    ld      de, (_last_elem_ptr)
-   0060 01 07 00      [10]   35    ld      bc, #entity_size
-   0063 ED B0         [21]   36    ldir
+   002B ED 5B 02 00   [20]   34    ld      de, (_last_elem_ptr)
+   002F 01 07 00      [10]   35    ld      bc, #entity_size
+   0032 ED B0         [21]   36    ldir
                              37 
-   0065 3A 00 00      [13]   38    ld       a, (_num_entities)
-   0068 3C            [ 4]   39    inc      a
-   0069 32 00 00      [13]   40    ld      (_num_entities), a
+   0034 3A 00 00      [13]   38    ld       a, (_num_entities)
+   0037 3C            [ 4]   39    inc      a
+   0038 32 00 00      [13]   40    ld      (_num_entities), a
                              41 
-   006C 2A 02 00      [16]   42    ld      hl, (_last_elem_ptr)
-   006F 01 07 00      [10]   43    ld      bc, #entity_size
-   0072 09            [11]   44    add     hl, bc
-   0073 22 02 00      [16]   45    ld      (_last_elem_ptr), hl
+   003B 2A 02 00      [16]   42    ld      hl, (_last_elem_ptr)
+   003E 01 07 00      [10]   43    ld      bc, #entity_size
+   0041 09            [11]   44    add     hl, bc
+   0042 22 02 00      [16]   45    ld      (_last_elem_ptr), hl
                              46 
-   0076 C9            [10]   47    ret
+   0045 C9            [10]   47    ret
+                             48 

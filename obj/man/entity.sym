@@ -56,8 +56,8 @@ Symbol Table
     PAL_INKR=  0040     |     PAL_PENR=  0000     |     PPI_PORT=  00F5 
   0 _entity_   0004 GR  |   0 _last_el   0002 GR  |   0 _num_ent   0000 GR
     cpct_pag=  0000     |     cpct_pag=  0010     |     cpct_pag=  0020 
-    cpct_pag=  0030     |     entity_s=  0007 G   |   0 entityma   0053 GR
-  0 entityma   004A GR  |   0 entityma   004F GR  |     max_enti=  000A G
+    cpct_pag=  0030     |     entity_s=  0007 G   |   0 entityma   0022 GR
+  0 entityma   0019 GR  |   0 entityma   001E GR  |     max_enti=  0003 G
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
@@ -71,5 +71,5 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE      size   77   flags    0
+   0 _CODE      size   46   flags    0
 

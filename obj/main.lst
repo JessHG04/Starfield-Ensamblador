@@ -2704,31 +2704,42 @@ Hexadecimal [16-Bits]
                              12 .globl rendersys_init
                              13 .globl physics_move
                              14 .globl cpct_waitVSYNC_asm
-                             15 
-   0000 14 01 02 02 FF FF    16 star:    .db 0x14, 0x01, 0x02, 0x02, 0xFF, 0xFF, 0xF0
+                             15 .globl rendersys_clear
+                             16 
+   0000 14 01 02 02 FF 00    17 star:    .db 0x14, 0x01, 0x02, 0x02, 0xFF, 0x00, 0xF0
         F0
-   0007 28 10 02 02 FF FF    17 starr:   .db 0x28, 0x10, 0x02, 0x02, 0XFF, 0xFF, 0xFF
+   0007 28 0B 02 02 FF 00    18 starr:   .db 0x28, 0x0B, 0x02, 0x02, 0XFF, 0x00, 0xFF
         FF
-                             18 
-   000E                      19 _main::
-   000E CD 00 00      [17]   20    call cpct_disableFirmware_asm
-                             21 
-                             22    ;;Init systems
-   0011 CD 00 00      [17]   23    call rendersys_init
-                             24 
-   0014 21 00 00      [10]   25    ld    hl, #star
-   0017 CD 00 00      [17]   26    call entityman_create
-                             27 
-   001A 21 07 00      [10]   28    ld    hl, #starr
-   001D CD 00 00      [17]   29    call entityman_create
-                             30 
-   0020                      31 loop:
-   0020 CD 00 00      [17]   32    call entityman_getEntityArray_IX
-   0023 CD 00 00      [17]   33    call entityman_getNumEntities_A
-   0026 CD 00 00      [17]   34    call physics_move
-   0029 CD 00 00      [17]   35    call entityman_getEntityArray_IX
-   002C CD 00 00      [17]   36    call entityman_getNumEntities_A
-   002F CD 00 00      [17]   37    call rendersys_update
-                             38 
-   0032 CD 00 00      [17]   39    call cpct_waitVSYNC_asm
-   0035 18 E9         [12]   40    jr    loop
+   000E 32 15 02 02 FF 00    19 starrr:  .db 0x32, 0x15, 0x02, 0x02, 0XFF, 0x00, 0x0F
+        0F
+                             20 
+   0015                      21 _main::
+   0015 CD 00 00      [17]   22    call cpct_disableFirmware_asm
+                             23 
+                             24    ;;Init systems
+   0018 CD 00 00      [17]   25    call rendersys_init
+                             26 
+   001B 21 00 00      [10]   27    ld    hl, #star
+   001E CD 00 00      [17]   28    call entityman_create
+                             29 
+   0021 21 07 00      [10]   30    ld    hl, #starr
+   0024 CD 00 00      [17]   31    call entityman_create
+                             32 
+   0027 21 0E 00      [10]   33    ld    hl, #starrr
+   002A CD 00 00      [17]   34    call entityman_create
+                             35 
+   002D                      36 loop:
+                             37    ;;call entityman_getEntityArray_IX
+                             38    ;;call entityman_getNumEntities_A
+                             39    ;;call rendersys_clear
+                             40 
+   002D CD 00 00      [17]   41    call entityman_getEntityArray_IX
+   0030 CD 00 00      [17]   42    call entityman_getNumEntities_A
+   0033 CD 00 00      [17]   43    call physics_move
+                             44    
+   0036 CD 00 00      [17]   45    call entityman_getEntityArray_IX
+   0039 CD 00 00      [17]   46    call entityman_getNumEntities_A
+   003C CD 00 00      [17]   47    call rendersys_update
+                             48 
+   003F CD 00 00      [17]   49    call cpct_waitVSYNC_asm
+   0042 18 E9         [12]   50    jr    loop
