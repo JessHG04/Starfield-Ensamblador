@@ -2694,21 +2694,47 @@ Hexadecimal [16-Bits]
                               2 
                               3 .globl entity_size
                               4 .globl rendersys_clear
-                              5 ;; INPUT
-                              6 ;;      IX: Pointer to first entity to render
-                              7 ;;      A: Number of entites to render
-   408A                       8 physics_move::
-   408A                       9 _phyloop:
-   408A F5            [11]   10    push     af
-   408B CD C8 40      [17]   11    call     rendersys_clear
-   408E DD 7E 00      [19]   12    ld        a, 0(ix)
-   4091 DD 86 04      [19]   13    add   4(ix)
-   4094 DD 77 00      [19]   14    ld    0(ix), a
-   4097 F1            [10]   15    pop      af
-   4098 3D            [ 4]   16    dec       a
-   4099 C8            [11]   17    ret       z
-                             18 
-   409A 01 07 00      [10]   19    ld      bc, #entity_size
-   409D DD 09         [15]   20    add     ix, bc
-   409F 18 E9         [12]   21    jr _phyloop
-   40A1 C9            [10]   22    ret
+                              5 .globl rendersys_update_one
+                              6 ;; INPUT
+                              7 ;;      IX: Pointer to first entity to render
+                              8 ;;      A: Number of entites to render
+                              9 ;;physics_move::
+                             10 ;;_phyloop:
+                             11 ;;   push     af
+                             12 ;;   call     rendersys_clear
+                             13 ;;   ld        a, 0(ix)
+                             14 ;;   add   4(ix)
+                             15 ;;   ld    0(ix), a
+                             16 ;;   pop      af
+                             17 ;;   dec       a
+                             18 ;;   ret       z
+                             19 
+                             20 ;;   ld      bc, #entity_size
+                             21 ;;   add     ix, bc
+                             22 ;;   jr _phyloop
+                             23 ;;   ret
+                             24 
+   40BB                      25 physics_move::
+   40BB                      26 _phyloop:
+   40BB F5            [11]   27    push     af
+                             28    ;;call     rendersys_clear
+                             29 
+                             30    ;;RENDER CLEAR
+   40BC DD 7E 06      [19]   31    ld               a, 6(ix)  
+   40BF 08            [ 4]   32    ex              af, af'    
+   40C0 DD 36 06 00   [19]   33    ld           6(ix), #0x00
+   40C4 CD 05 41      [17]   34    call      rendersys_update_one ;;Vuelve otro A
+   40C7 08            [ 4]   35    ex          af, af'
+   40C8 DD 77 06      [19]   36    ld      6(ix),a
+                             37    ;;;;;;;;;;;;
+   40CB DD 7E 00      [19]   38    ld        a, 0(ix)
+   40CE DD 86 04      [19]   39    add   4(ix)
+   40D1 DD 77 00      [19]   40    ld    0(ix), a
+   40D4 F1            [10]   41    pop      af
+   40D5 3D            [ 4]   42    dec       a
+   40D6 C8            [11]   43    ret       z
+                             44 
+   40D7 01 07 00      [10]   45    ld      bc, #entity_size
+   40DA DD 09         [15]   46    add     ix, bc
+   40DC 18 DD         [12]   47    jr _phyloop
+   40DE C9            [10]   48    ret

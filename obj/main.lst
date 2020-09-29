@@ -2708,9 +2708,9 @@ Hexadecimal [16-Bits]
                              16 
    0000 14 01 02 02 FF 00    17 star:    .db 0x14, 0x01, 0x02, 0x02, 0xFF, 0x00, 0xF0
         F0
-   0007 28 0B 02 02 FF 00    18 starr:   .db 0x28, 0x0B, 0x02, 0x02, 0XFF, 0x00, 0xFF
+   0007 28 0B 02 02 FD 00    18 starr:   .db 0x28, 0x0B, 0x02, 0x02, 0XFD, 0x00, 0xFF
         FF
-   000E 32 15 02 02 FF 00    19 starrr:  .db 0x32, 0x15, 0x02, 0x02, 0XFF, 0x00, 0x0F
+   000E 32 15 02 02 FB 00    19 starrr:  .db 0x32, 0x15, 0x02, 0x02, 0XFB, 0x00, 0x0F
         0F
                              20 
    0015                      21 _main::

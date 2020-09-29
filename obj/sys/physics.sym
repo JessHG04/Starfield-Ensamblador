@@ -63,11 +63,12 @@ Hexadecimal [16-Bits]
 
 Symbol Table
 
+    rendersy   **** GX
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE      size   18   flags    0
+   0 _CODE      size   24   flags    0
 

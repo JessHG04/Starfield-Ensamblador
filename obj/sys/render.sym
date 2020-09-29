@@ -63,13 +63,13 @@ Hexadecimal [16-Bits]
 
 Symbol Table
 
-    opc_JR  =  0018     |     opc_LD_D=  0016     |   0 rendersy   0026 GR
-  0 rendersy   0000 GR  |   0 rendersy   0001 GR
+    opc_JR  =  0018     |     opc_LD_D=  0016     |   0 rendersy   0040 GR
+  0 rendersy   0000 GR  |   0 rendersy   0001 GR  |   0 rendersy   0026 GR
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE      size   3F   flags    0
+   0 _CODE      size   4F   flags    0
 

@@ -13,7 +13,6 @@ rendersys_init::
 ;;      IX: Pointer to first entity to render
 ;;      A: Number of entites to render
 rendersys_update::
-
 _renloop:
     push    af
     ld      de, #0xC000
@@ -34,6 +33,19 @@ _renloop:
     ld      bc, #entity_size
     add     ix, bc
     jr _renloop
+    ret
+
+rendersys_update_one::
+    ld      de, #0xC000
+    ld       c, 0(ix)   ;;X
+    ld       b, 1(ix)   ;;Y
+    call    cpct_getScreenPtr_asm
+
+    ex      de, hl
+    ld       a, 6(ix)   ;;Color
+    ld       c, 2(ix)   ;;Width
+    ld       b, 3(ix)   ;;Height
+    call    cpct_drawSolidBox_asm
     ret
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -73,10 +85,10 @@ rendersys_clear::
     ld               a, 6(ix)  
     ex              af, af'    
     ld           6(ix), #0x00
-    push ix
-    call      entityman_getEntityArray_IX
-    call      entityman_getNumEntities_A
-    call      rendersys_update ;;Vuelve otro A
-    pop ix
+    ;;push ix
+    ;;call      entityman_getEntityArray_IX
+    ;;call      entityman_getNumEntities_A
+    call      rendersys_update_one ;;Vuelve otro A
+    ;;pop ix
     ex          af, af'
     ld      6(ix),a

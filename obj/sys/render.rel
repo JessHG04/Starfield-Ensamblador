@@ -1,5 +1,5 @@
 XL2
-H 1 areas 9 global symbols
+H 1 areas A global symbols
 M cpct_keyboard
 S entityman_getNumEntities_A Ref0000
 S .__.ABS. Def0000
@@ -7,9 +7,10 @@ S entityman_getEntityArray_IX Ref0000
 S entity_size Ref0000
 S cpct_drawSolidBox_asm Ref0000
 S cpct_getScreenPtr_asm Ref0000
-A _CODE size 3F flags 0 addr 0
+A _CODE size 4F flags 0 addr 0
 S rendersys_update Def0001
-S rendersys_clear Def0026
+S rendersys_clear Def0040
+S rendersys_update_one Def0026
 S rendersys_init Def0000
 T 00 00
 R 00 00 00 00
@@ -27,7 +28,13 @@ T 1D 00 C8 01 00 00 DD 09 18 DC C9
 R 00 00 00 00 02 04 03 00
 T 26 00
 R 00 00 00 00
-T 26 00 DD 7E 06 08 DD 36 06 00 DD E5 CD 00 00 CD
-R 00 00 00 00 02 0D 02 00
-T 34 00 00 00 CD 01 00 DD E1 08 DD 77 06
-R 00 00 00 00 02 02 00 00 00 05 00 00
+T 26 00 11 00 C0 DD 4E 00 DD 46 01 CD 00 00 EB DD
+R 00 00 00 00 02 0C 05 00
+T 34 00 7E 06 DD 4E 02 DD 46 03 CD 00 00 C9
+R 00 00 00 00 02 0B 04 00
+T 40 00
+R 00 00 00 00
+T 40 00 DD 7E 06 08 DD 36 06 00 CD 26 00 08 DD 77
+R 00 00 00 00 00 0B 00 00
+T 4E 00 06
+R 00 00 00 00
