@@ -10,42 +10,42 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000000  .__.ABS.                           cpct_video
      00000000  l__DATA                         
      00000007  entity_size                        cpct_keyboard
-     0000000A  max_entities                       cpct_keyboard
-     00000207  l__CODE                         
+     0000000C  max_entities                       cpct_keyboard
+     0000029C  l__CODE                         
      00004000  s__CODE                         
-     00004207  s__DATA                         
+     0000429C  s__DATA                         
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    00000207 =         519. bytes (REL,CON)
+_CODE                               00004000    0000029C =         668. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00004000  star                               cpct_keyboard
-     00004015  _main                              cpct_keyboard
-     00004044  _num_entities                      cpct_keyboard
-     00004046  _last_elem_ptr                     cpct_keyboard
-     00004048  _entity_array                      cpct_keyboard
-     0000408E  entityman_getEntityArray_IX        cpct_keyboard
-     00004093  entityman_getNumEntities_A         cpct_keyboard
-     00004097  entityman_create                   cpct_keyboard
-     000040BB  physics_move                       cpct_keyboard
-     000040DF  rendersys_init                     cpct_keyboard
-     000040E0  rendersys_update                   cpct_keyboard
-     00004105  rendersys_update_one               cpct_keyboard
-     0000411F  rendersys_clear                    cpct_keyboard
-     0000412E  _cpct_waitVSYNC                    cpct_video
-     0000412E  cpct_waitVSYNC_asm                 cpct_video
-     00004136  _cpct_disableFirmware              cpct_firmware
-     00004136  _cpct_removeInterruptHandler       cpct_firmware
-     00004136  cpct_disableFirmware_asm           cpct_firmware
-     00004136  cpct_removeInterruptHandler_asm    cpct_firmware
-     00004146  cpct_drawSolidBox_asm              cpct_sprites
-     000041EA  _cpct_mode_rom_status              cpct_firmware
-     000041EB  cpct_getScreenPtr_asm              cpct_video
+     00004054  _main                              cpct_keyboard
+     000040B9  _num_entities                      cpct_keyboard
+     000040BB  _last_elem_ptr                     cpct_keyboard
+     000040BD  _entity_array                      cpct_keyboard
+     00004111  entityman_getEntityArray_IX        cpct_keyboard
+     00004116  entityman_getNumEntities_A         cpct_keyboard
+     0000411A  entityman_create                   cpct_keyboard
+     0000413E  physics_move                       cpct_keyboard
+     00004162  rendersys_init                     cpct_keyboard
+     00004168  rendersys_update                   cpct_keyboard
+     0000418D  rendersys_update_one               cpct_keyboard
+     000041A7  rendersys_clear                    cpct_keyboard
+     000041B6  cpct_setVideoMode_asm              cpct_video
+     000041C3  _cpct_waitVSYNC                    cpct_video
+     000041C3  cpct_waitVSYNC_asm                 cpct_video
+     000041CB  _cpct_disableFirmware              cpct_firmware
+     000041CB  _cpct_removeInterruptHandler       cpct_firmware
+     000041CB  cpct_disableFirmware_asm           cpct_firmware
+     000041CB  cpct_removeInterruptHandler_asm    cpct_firmware
+     000041DB  cpct_drawSolidBox_asm              cpct_sprites
+     0000427F  _cpct_mode_rom_status              cpct_firmware
+     00004280  cpct_getScreenPtr_asm              cpct_video
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 
@@ -60,6 +60,8 @@ obj/sys/render.rel                        [ cpct_keyboard ]
 
 Libraries Linked                          [ object file ]
 
+/home/jess/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setVideoMode_asmbindings.re ]
 /home/jess/Escritorio/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_waitVSYNC.rel ]
 /home/jess/Escritorio/cpctelera/cpctelera/cpctelera.lib

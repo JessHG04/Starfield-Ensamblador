@@ -5,9 +5,11 @@
 .globl entity_size
 .globl entityman_getEntityArray_IX
 .globl entityman_getNumEntities_A
+.globl cpct_setVideoMode_asm
 
 rendersys_init::
-
+    ld      c, #0x00
+    call cpct_setVideoMode_asm
     ret
 ;; INPUT
 ;;      IX: Pointer to first entity to render

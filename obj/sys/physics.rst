@@ -2714,27 +2714,27 @@ Hexadecimal [16-Bits]
                              22 ;;   jr _phyloop
                              23 ;;   ret
                              24 
-   40BB                      25 physics_move::
-   40BB                      26 _phyloop:
-   40BB F5            [11]   27    push     af
+   413E                      25 physics_move::
+   413E                      26 _phyloop:
+   413E F5            [11]   27    push     af
                              28    ;;call     rendersys_clear
                              29 
                              30    ;;RENDER CLEAR
-   40BC DD 7E 06      [19]   31    ld               a, 6(ix)  
-   40BF 08            [ 4]   32    ex              af, af'    
-   40C0 DD 36 06 00   [19]   33    ld           6(ix), #0x00
-   40C4 CD 05 41      [17]   34    call      rendersys_update_one ;;Vuelve otro A
-   40C7 08            [ 4]   35    ex          af, af'
-   40C8 DD 77 06      [19]   36    ld      6(ix),a
+   413F DD 7E 06      [19]   31    ld               a, 6(ix)  
+   4142 08            [ 4]   32    ex              af, af'    
+   4143 DD 36 06 00   [19]   33    ld           6(ix), #0x00
+   4147 CD 8D 41      [17]   34    call      rendersys_update_one ;;Vuelve otro A
+   414A 08            [ 4]   35    ex          af, af'
+   414B DD 77 06      [19]   36    ld      6(ix),a
                              37    ;;;;;;;;;;;;
-   40CB DD 7E 00      [19]   38    ld        a, 0(ix)
-   40CE DD 86 04      [19]   39    add   4(ix)
-   40D1 DD 77 00      [19]   40    ld    0(ix), a
-   40D4 F1            [10]   41    pop      af
-   40D5 3D            [ 4]   42    dec       a
-   40D6 C8            [11]   43    ret       z
+   414E DD 7E 00      [19]   38    ld        a, 0(ix)
+   4151 DD 86 04      [19]   39    add   4(ix)
+   4154 DD 77 00      [19]   40    ld    0(ix), a
+   4157 F1            [10]   41    pop      af
+   4158 3D            [ 4]   42    dec       a
+   4159 C8            [11]   43    ret       z
                              44 
-   40D7 01 07 00      [10]   45    ld      bc, #entity_size
-   40DA DD 09         [15]   46    add     ix, bc
-   40DC 18 DD         [12]   47    jr _phyloop
-   40DE C9            [10]   48    ret
+   415A 01 07 00      [10]   45    ld      bc, #entity_size
+   415D DD 09         [15]   46    add     ix, bc
+   415F 18 DD         [12]   47    jr _phyloop
+   4161 C9            [10]   48    ret
