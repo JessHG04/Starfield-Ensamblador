@@ -1,10 +1,5 @@
 .include "cpctelera.h.s"
 .include "entity.h.s"
-;;
-;; ENTITY MANAGER
-;;
-entity_size == 7 ;;X, Y, W, H, Vx, Vy, C
-max_entities == 12
 
 _num_entities::     .db 0x00, 0x00
 _last_elem_ptr::    .dw _entity_array

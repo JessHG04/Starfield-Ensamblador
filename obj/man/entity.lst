@@ -2692,59 +2692,59 @@ Hexadecimal [16-Bits]
 
 
                               2 .include "entity.h.s"
-                              1  
-                              2 .globl entityman_getEntityArray_IX
-                              3 .globl entityman_getNumEntities_A
-                              4 .globl entityman_create
+                              1  ;;
+                              2 ;; ENTITY MANAGER
+                              3 ;;
+                     0007     4 entity_size == 7 ;;X, Y, W, H, Vx, Vy, C
+                     000C     5 max_entities == 12
+                              6 
+                              7 .globl entityman_getEntityArray_IX
+                              8 .globl entityman_getNumEntities_A
+                              9 .globl entityman_create
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 53.
 Hexadecimal [16-Bits]
 
 
 
-                              3 ;;
-                              4 ;; ENTITY MANAGER
-                              5 ;;
-                     0007     6 entity_size == 7 ;;X, Y, W, H, Vx, Vy, C
-                     000C     7 max_entities == 12
+                              3 
+   0000 00 00                 4 _num_entities::     .db 0x00, 0x00
+   0002 04 00                 5 _last_elem_ptr::    .dw _entity_array
+   0004                       6 _entity_array::
+   0004                       7     .ds entity_size*max_entities
                               8 
-   0000 00 00                 9 _num_entities::     .db 0x00, 0x00
-   0002 04 00                10 _last_elem_ptr::    .dw _entity_array
-   0004                      11 _entity_array::
-   0004                      12     .ds entity_size*max_entities
-                             13 
-   0058                      14 entityman_getEntityArray_IX::
-   0058 DD 21 04 00   [14]   15     ld      ix, #_entity_array
-   005C C9            [10]   16     ret
-                             17 
-   005D                      18 entityman_getNumEntities_A::
-   005D 3A 00 00      [13]   19     ld      a, (_num_entities)
-   0060 C9            [10]   20     ret
+   0058                       9 entityman_getEntityArray_IX::
+   0058 DD 21 04 00   [14]   10     ld      ix, #_entity_array
+   005C C9            [10]   11     ret
+                             12 
+   005D                      13 entityman_getNumEntities_A::
+   005D 3A 00 00      [13]   14     ld      a, (_num_entities)
+   0060 C9            [10]   15     ret
+                             16 
+                             17 ;;INPUT
+                             18 ;;      HL: pointer to entity initializer byte
+   0061                      19 entityman_create::
+   0061 EB            [ 4]   20    ex    de, hl
                              21 
-                             22 ;;INPUT
-                             23 ;;      HL: pointer to entity initializer byte
-   0061                      24 entityman_create::
-   0061 EB            [ 4]   25    ex    de, hl
-                             26 
-   0062 2A 00 00      [16]   27    ld     hl, (_num_entities)
-   0065 3E 0C         [ 7]   28    ld     a, #max_entities
+   0062 2A 00 00      [16]   22    ld     hl, (_num_entities)
+   0065 3E 0C         [ 7]   23    ld     a, #max_entities
+                             24 
+   0067 95            [ 4]   25    sub    l  ;;Comprueba que no se haya pasado del maximo que podemos tener
+   0068 C8            [11]   26    ret     z
+                             27 
+   0069 EB            [ 4]   28     ex    de, hl
                              29 
-   0067 95            [ 4]   30    sub    l  ;;Comprueba que no se haya pasado del maximo que podemos tener
-   0068 C8            [11]   31    ret     z
-                             32 
-   0069 EB            [ 4]   33     ex    de, hl
-                             34 
-   006A ED 5B 02 00   [20]   35    ld      de, (_last_elem_ptr)
-   006E 01 07 00      [10]   36    ld      bc, #entity_size
-   0071 ED B0         [21]   37    ldir
-                             38 
-   0073 3A 00 00      [13]   39    ld       a, (_num_entities)
-   0076 3C            [ 4]   40    inc      a
-   0077 32 00 00      [13]   41    ld      (_num_entities), a
+   006A ED 5B 02 00   [20]   30    ld      de, (_last_elem_ptr)
+   006E 01 07 00      [10]   31    ld      bc, #entity_size
+   0071 ED B0         [21]   32    ldir
+                             33 
+   0073 3A 00 00      [13]   34    ld       a, (_num_entities)
+   0076 3C            [ 4]   35    inc      a
+   0077 32 00 00      [13]   36    ld      (_num_entities), a
+                             37 
+   007A 2A 02 00      [16]   38    ld      hl, (_last_elem_ptr)
+   007D 01 07 00      [10]   39    ld      bc, #entity_size
+   0080 09            [11]   40    add     hl, bc
+   0081 22 02 00      [16]   41    ld      (_last_elem_ptr), hl
                              42 
-   007A 2A 02 00      [16]   43    ld      hl, (_last_elem_ptr)
-   007D 01 07 00      [10]   44    ld      bc, #entity_size
-   0080 09            [11]   45    add     hl, bc
-   0081 22 02 00      [16]   46    ld      (_last_elem_ptr), hl
-                             47 
-   0084 C9            [10]   48    ret
-                             49 
+   0084 C9            [10]   43    ret
+                             44 
