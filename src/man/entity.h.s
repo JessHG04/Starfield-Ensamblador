@@ -1,0 +1,3 @@
+.globl entityman_getEntityArray_IX
+.globl entityman_getNumEntities_A
+.globl entityman_create

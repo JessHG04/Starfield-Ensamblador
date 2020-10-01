@@ -1,18 +1,14 @@
 .include "cpctelera.h.s"
+.include "entity.h.s"
+.include "physics.h.s"
+.include "render.h.s"
+
 .area _DATA
 
 .area _CODE
 
 .globl cpct_disableFirmware_asm
-.globl entityman_create
-.globl rendersys_update
-
-.globl entityman_getEntityArray_IX
-.globl entityman_getNumEntities_A
-.globl rendersys_init
-.globl physics_move
 .globl cpct_waitVSYNC_asm
-.globl rendersys_clear
 
 s:      .db 0x14, 0x14, 0x02, 0x02, 0xFF, 0x00, 26
 st:     .db 0x28, 0x28, 0x02, 0x02, 0xFD, 0x00, 26

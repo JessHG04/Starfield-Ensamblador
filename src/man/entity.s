@@ -1,4 +1,5 @@
 .include "cpctelera.h.s"
+.include "entity.h.s"
 ;;
 ;; ENTITY MANAGER
 ;;
@@ -26,7 +27,7 @@ entityman_create::
    ld     hl, (_num_entities)
    ld     a, #max_entities
 
-   sub    l
+   sub    l  ;;Comprueba que no se haya pasado del maximo que podemos tener
    ret     z
 
     ex    de, hl
