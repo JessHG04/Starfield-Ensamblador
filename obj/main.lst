@@ -2691,94 +2691,113 @@ Hexadecimal [16-Bits]
 
 
 
-                              2 .area _DATA
-                              3 
-                              4 .area _CODE
-                              5 
-                              6 .globl cpct_disableFirmware_asm
-                              7 .globl entityman_create
-                              8 .globl rendersys_update
-                              9 
-                             10 .globl entityman_getEntityArray_IX
-                             11 .globl entityman_getNumEntities_A
-                             12 .globl rendersys_init
-                             13 .globl physics_move
-                             14 .globl cpct_waitVSYNC_asm
-                             15 .globl rendersys_clear
-                             16 
-   0000 14 14 02 02 FF 00    17 s:      .db 0x14, 0x14, 0x02, 0x02, 0xFF, 0x00, 26
-        1A
-   0007 28 28 02 02 FD 00    18 st:     .db 0x28, 0x28, 0x02, 0x02, 0xFD, 0x00, 26
-        1A
-   000E 42 42 02 02 FB 00    19 sta:    .db 0x42, 0x42, 0x02, 0x02, 0xFB, 0x00, 26
-        1A
-   0015 56 56 02 02 FD 00    20 star:   .db 0x56, 0x56, 0x02, 0x02, 0xFD, 0x00, 26
-        1A
-                             21 
-   001C 20 15 02 02 FA 00    22 ss:     .db 0x20, 0x15, 0x02, 0x02, 0xFA, 0x00, 26
-        1A
-   0023 40 35 02 02 FD 00    23 sst:    .db 0x40, 0x35, 0x02, 0x02, 0xFD, 0x00, 26
-        1A
-   002A 60 55 02 02 FE 00    24 ssta:   .db 0x60, 0x55, 0x02, 0x02, 0xFE, 0x00, 26
-        1A
-   0031 80 75 02 02 FC 00    25 sstar:  .db 0x80, 0x75, 0x02, 0x02, 0xFC, 0x00, 26
-        1A
-                             26 
-   0038 10 A4 02 02 FE 00    27 sss:    .db 0x10, 0xA4, 0x02, 0x02, 0xFE, 0x00, 26
-        1A
-   003F 20 30 02 02 FD 00    28 ssst:   .db 0x20, 0x30, 0x02, 0x02, 0xFD, 0x00, 26
-        1A
-   0046 30 20 02 02 FC 00    29 sssta:  .db 0x30, 0x20, 0x02, 0x02, 0xFC, 0x00, 26
-        1A
-   004D 50 B2 02 02 FE 00    30 ssstar: .db 0x50, 0xB2, 0x02, 0x02, 0xFE, 0x00, 26
-        1A
-                             31 
-   0054                      32 _main::
-   0054 CD 00 00      [17]   33    call cpct_disableFirmware_asm
-                             34 
-                             35    ;;Init systems
-   0057 CD 00 00      [17]   36    call rendersys_init
-                             37 
-   005A 21 00 00      [10]   38    ld    hl, #s
-   005D CD 00 00      [17]   39    call entityman_create
-   0060 21 07 00      [10]   40    ld    hl, #st
-   0063 CD 00 00      [17]   41    call entityman_create
-   0066 21 0E 00      [10]   42    ld    hl, #sta
-   0069 CD 00 00      [17]   43    call entityman_create
-   006C 21 15 00      [10]   44    ld    hl, #star
+                              2 .include "man/entity.h.s"
+                              1  
+                              2 .globl entityman_getEntityArray_IX
+                              3 .globl entityman_getNumEntities_A
+                              4 .globl entityman_create
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 53.
 Hexadecimal [16-Bits]
 
 
 
-   006F CD 00 00      [17]   45    call entityman_create
-                             46 
-   0072 21 1C 00      [10]   47    ld    hl, #ss
-   0075 CD 00 00      [17]   48    call entityman_create
-   0078 21 23 00      [10]   49    ld    hl, #sst
-   007B CD 00 00      [17]   50    call entityman_create
-   007E 21 2A 00      [10]   51    ld    hl, #ssta
-   0081 CD 00 00      [17]   52    call entityman_create
-   0084 21 31 00      [10]   53    ld    hl, #sstar
-   0087 CD 00 00      [17]   54    call entityman_create
-                             55 
-   008A 21 38 00      [10]   56    ld    hl, #sss
-   008D CD 00 00      [17]   57    call entityman_create
-   0090 21 3F 00      [10]   58    ld    hl, #ssst
-   0093 CD 00 00      [17]   59    call entityman_create
-   0096 21 46 00      [10]   60    ld    hl, #sssta
-   0099 CD 00 00      [17]   61    call entityman_create
-   009C 21 4D 00      [10]   62    ld    hl, #ssstar
-   009F CD 00 00      [17]   63    call entityman_create
-                             64 
-   00A2                      65 loop:
-   00A2 CD 00 00      [17]   66    call entityman_getEntityArray_IX
-   00A5 CD 00 00      [17]   67    call entityman_getNumEntities_A
-   00A8 CD 00 00      [17]   68    call physics_move
-                             69    
-   00AB CD 00 00      [17]   70    call entityman_getEntityArray_IX
-   00AE CD 00 00      [17]   71    call entityman_getNumEntities_A
-   00B1 CD 00 00      [17]   72    call rendersys_update
-                             73 
-   00B4 CD 00 00      [17]   74    call cpct_waitVSYNC_asm
-   00B7 18 E9         [12]   75    jr    loop
+                              3 .include "sys/physics.h.s"
+                              1 .globl physics_move
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 54.
+Hexadecimal [16-Bits]
+
+
+
+                              4 .include "sys/render.h.s"
+                              1 .globl rendersys_init
+                              2 .globl rendersys_update
+                              3 .globl rendersys_update_one 
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 55.
+Hexadecimal [16-Bits]
+
+
+
+                              5 
+                              6 .area _DATA
+                              7 
+                              8 .area _CODE
+                              9 
+                             10 .globl cpct_disableFirmware_asm
+                             11 .globl cpct_waitVSYNC_asm
+                             12 
+   0000 14 14 02 02 FF 00    13 s:      .db 0x14, 0x14, 0x02, 0x02, 0xFF, 0x00, 26
+        1A
+   0007 28 28 02 02 FD 00    14 st:     .db 0x28, 0x28, 0x02, 0x02, 0xFD, 0x00, 26
+        1A
+   000E 42 42 02 02 FB 00    15 sta:    .db 0x42, 0x42, 0x02, 0x02, 0xFB, 0x00, 26
+        1A
+   0015 56 56 02 02 FD 00    16 star:   .db 0x56, 0x56, 0x02, 0x02, 0xFD, 0x00, 26
+        1A
+                             17 
+   001C 20 15 02 02 FA 00    18 ss:     .db 0x20, 0x15, 0x02, 0x02, 0xFA, 0x00, 26
+        1A
+   0023 40 35 02 02 FD 00    19 sst:    .db 0x40, 0x35, 0x02, 0x02, 0xFD, 0x00, 26
+        1A
+   002A 60 55 02 02 FE 00    20 ssta:   .db 0x60, 0x55, 0x02, 0x02, 0xFE, 0x00, 26
+        1A
+   0031 80 75 02 02 FC 00    21 sstar:  .db 0x80, 0x75, 0x02, 0x02, 0xFC, 0x00, 26
+        1A
+                             22 
+   0038 10 A4 02 02 FE 00    23 sss:    .db 0x10, 0xA4, 0x02, 0x02, 0xFE, 0x00, 26
+        1A
+   003F 20 30 02 02 FD 00    24 ssst:   .db 0x20, 0x30, 0x02, 0x02, 0xFD, 0x00, 26
+        1A
+   0046 30 20 02 02 FC 00    25 sssta:  .db 0x30, 0x20, 0x02, 0x02, 0xFC, 0x00, 26
+        1A
+   004D 50 B2 02 02 FE 00    26 ssstar: .db 0x50, 0xB2, 0x02, 0x02, 0xFE, 0x00, 26
+        1A
+                             27 
+   0054                      28 _main::
+   0054 CD 00 00      [17]   29    call cpct_disableFirmware_asm
+                             30 
+                             31    ;;Init systems
+   0057 CD 00 00      [17]   32    call rendersys_init
+                             33 
+   005A 21 00 00      [10]   34    ld    hl, #s
+   005D CD 00 00      [17]   35    call entityman_create
+   0060 21 07 00      [10]   36    ld    hl, #st
+   0063 CD 00 00      [17]   37    call entityman_create
+   0066 21 0E 00      [10]   38    ld    hl, #sta
+   0069 CD 00 00      [17]   39    call entityman_create
+   006C 21 15 00      [10]   40    ld    hl, #star
+   006F CD 00 00      [17]   41    call entityman_create
+                             42 
+   0072 21 1C 00      [10]   43    ld    hl, #ss
+   0075 CD 00 00      [17]   44    call entityman_create
+   0078 21 23 00      [10]   45    ld    hl, #sst
+   007B CD 00 00      [17]   46    call entityman_create
+   007E 21 2A 00      [10]   47    ld    hl, #ssta
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 56.
+Hexadecimal [16-Bits]
+
+
+
+   0081 CD 00 00      [17]   48    call entityman_create
+   0084 21 31 00      [10]   49    ld    hl, #sstar
+   0087 CD 00 00      [17]   50    call entityman_create
+                             51 
+   008A 21 38 00      [10]   52    ld    hl, #sss
+   008D CD 00 00      [17]   53    call entityman_create
+   0090 21 3F 00      [10]   54    ld    hl, #ssst
+   0093 CD 00 00      [17]   55    call entityman_create
+   0096 21 46 00      [10]   56    ld    hl, #sssta
+   0099 CD 00 00      [17]   57    call entityman_create
+   009C 21 4D 00      [10]   58    ld    hl, #ssstar
+   009F CD 00 00      [17]   59    call entityman_create
+                             60 
+   00A2                      61 loop:
+   00A2 CD 00 00      [17]   62    call entityman_getEntityArray_IX
+   00A5 CD 00 00      [17]   63    call entityman_getNumEntities_A
+   00A8 CD 00 00      [17]   64    call physics_move
+                             65    
+   00AB CD 00 00      [17]   66    call entityman_getEntityArray_IX
+   00AE CD 00 00      [17]   67    call entityman_getNumEntities_A
+   00B1 CD 00 00      [17]   68    call rendersys_update
+                             69 
+   00B4 CD 00 00      [17]   70    call cpct_waitVSYNC_asm
+   00B7 18 E9         [12]   71    jr    loop

@@ -54,22 +54,14 @@ Symbol Table
     Key_U   =  0405     |     Key_V   =  8006     |     Key_W   =  0807 
     Key_X   =  8007     |     Key_Y   =  0805     |     Key_Z   =  8008 
     PAL_INKR=  0040     |     PAL_PENR=  0000     |     PPI_PORT=  00F5 
-  0 _phyloop   0000 R   |     cpct_pag=  0000     |     cpct_pag=  0010 
-    cpct_pag=  0020     |     cpct_pag=  0030     |     entity_s=  0007 G
-    entityma   **** GX  |     entityma   **** GX  |     entityma   **** GX
-    max_enti=  000C G   |     opc_DI  =  00F3     |     opc_EI  =  00FB 
+    cpct_pag=  0000     |     cpct_pag=  0010     |     cpct_pag=  0020 
+    cpct_pag=  0030     |     opc_DI  =  00F3     |     opc_EI  =  00FB 
+    opc_JR  =  0018     |     opc_LD_D=  0016 
+
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
-Hexadecimal [16-Bits]
-
-Symbol Table
-
-    opc_JR  =  0018     |     opc_LD_D=  0016     |   0 physics_   0000 GR
-    rendersy   **** GX  |     rendersy   **** GX  |     rendersy   **** GX
-
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE      size   24   flags    0
+   0 _CODE      size    0   flags    0
 

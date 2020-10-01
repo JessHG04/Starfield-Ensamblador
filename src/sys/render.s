@@ -1,5 +1,5 @@
 .include "cpctelera.h.s"
-.include "entity.h.s"
+.include "man/entity.h.s"
 
 .globl cpct_getScreenPtr_asm
 .globl cpct_drawSolidBox_asm

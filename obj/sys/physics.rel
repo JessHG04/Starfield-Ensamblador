@@ -1,10 +1,15 @@
 XL2
-H 1 areas 5 global symbols
+H 1 areas A global symbols
 M cpct_keyboard
-S rendersys_clear Ref0000
+S rendersys_update Ref0000
+S max_entities Def000C
+S entityman_getNumEntities_A Ref0000
 S .__.ABS. Def0000
 S rendersys_update_one Ref0000
-S entity_size Ref0000
+S entityman_create Ref0000
+S rendersys_init Ref0000
+S entityman_getEntityArray_IX Ref0000
+S entity_size Def0007
 A _CODE size 24 flags 0 addr 0
 S physics_move Def0000
 T 00 00
@@ -12,8 +17,8 @@ R 00 00 00 00
 T 00 00
 R 00 00 00 00
 T 00 00 F5 DD 7E 06 08 DD 36 06 00 CD 00 00 08 DD
-R 00 00 00 00 02 0C 02 00
+R 00 00 00 00 02 0C 04 00
 T 0E 00 77 06 DD 7E 00 DD 86 04 DD 77 00 F1 3D C8
 R 00 00 00 00
-T 1C 00 01 00 00 DD 09 18 DD C9
-R 00 00 00 00 02 03 03 00
+T 1C 00 01 07 00 DD 09 18 DD C9
+R 00 00 00 00

@@ -1,5 +1,6 @@
 .include "physics.h.s"
-.include "entity.h.s"
+.include "man/entity.h.s"
+.include "render.h.s"
 .include "cpctelera.h.s"
 
 ;; INPUT

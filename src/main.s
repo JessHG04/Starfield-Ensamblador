@@ -1,7 +1,7 @@
 .include "cpctelera.h.s"
-.include "entity.h.s"
-.include "physics.h.s"
-.include "render.h.s"
+.include "man/entity.h.s"
+.include "sys/physics.h.s"
+.include "sys/render.h.s"
 
 .area _DATA
 
