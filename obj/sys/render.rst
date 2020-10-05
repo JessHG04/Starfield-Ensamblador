@@ -2691,7 +2691,6 @@ Hexadecimal [16-Bits]
 
 
 
-<<<<<<< HEAD
                               2 
                               3 .globl cpct_getScreenPtr_asm
                               4 .globl cpct_drawSolidBox_asm
@@ -2747,24 +2746,11 @@ Hexadecimal [16-Bits]
                              54 ;; Elimina (en plan limpia bro, no destruye tu vida) a una entidad
                              55 ;; Registros destruidos: AF, BC, DE, HL
                              56 ;; Entrada: ix -> Puntero a entidad
-=======
-                              2 .include "man/entity.h.s"
-                              1  ;;
-                              2 ;; ENTITY MANAGER
-                              3 ;;
-                     0007     4 entity_size == 7 ;;X, Y, W, H, Vx, Vy, C
-                     000C     5 max_entities == 12
-                              6 
-                              7 .globl entityman_getEntityArray_IX
-                              8 .globl entityman_getNumEntities_A
-                              9 .globl entityman_create
->>>>>>> d68e1e5b0a40643a9891dce6a56874027cf701ae
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 53.
 Hexadecimal [16-Bits]
 
 
 
-<<<<<<< HEAD
                              57 ;;          a -> Numero total de entidades
                              58 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                              59 ;;rendersys_clear::
@@ -2805,102 +2791,3 @@ Hexadecimal [16-Bits]
                              94     ;;pop ix
    41F0 08            [ 4]   95     ex          af, af'
    41F1 DD 77 06      [19]   96     ld      6(ix),a
-=======
-                              3 
-                              4 .globl cpct_getScreenPtr_asm
-                              5 .globl cpct_drawSolidBox_asm
-                              6 .globl cpct_setVideoMode_asm
-                              7 
-   4162                       8 rendersys_init::
-   4162 0E 00         [ 7]    9     ld      c, #0x00
-   4164 CD B6 41      [17]   10     call cpct_setVideoMode_asm
-   4167 C9            [10]   11     ret
-                             12 ;; INPUT
-                             13 ;;      IX: Pointer to first entity to render
-                             14 ;;      A: Number of entites to render
-   4168                      15 rendersys_update::
-   4168                      16 _renloop:
-   4168 F5            [11]   17     push    af
-   4169 11 00 C0      [10]   18     ld      de, #0xC000
-   416C DD 4E 00      [19]   19     ld       c, 0(ix)   ;;X
-   416F DD 46 01      [19]   20     ld       b, 1(ix)   ;;Y
-   4172 CD 80 42      [17]   21     call    cpct_getScreenPtr_asm
-                             22 
-   4175 EB            [ 4]   23     ex      de, hl
-   4176 DD 7E 06      [19]   24     ld       a, 6(ix)   ;;Color
-   4179 DD 4E 02      [19]   25     ld       c, 2(ix)   ;;Width
-   417C DD 46 03      [19]   26     ld       b, 3(ix)   ;;Height
-   417F CD DB 41      [17]   27     call    cpct_drawSolidBox_asm
-                             28 
-   4182 F1            [10]   29     pop     af
-   4183 3D            [ 4]   30     dec     a
-   4184 C8            [11]   31     ret     z
-                             32 
-   4185 01 07 00      [10]   33     ld      bc, #entity_size
-   4188 DD 09         [15]   34     add     ix, bc
-   418A 18 DC         [12]   35     jr _renloop
-   418C C9            [10]   36     ret
-                             37 
-   418D                      38 rendersys_update_one::
-   418D 11 00 C0      [10]   39     ld      de, #0xC000
-   4190 DD 4E 00      [19]   40     ld       c, 0(ix)   ;;X
-   4193 DD 46 01      [19]   41     ld       b, 1(ix)   ;;Y
-   4196 CD 80 42      [17]   42     call    cpct_getScreenPtr_asm
-                             43 
-   4199 EB            [ 4]   44     ex      de, hl
-   419A DD 7E 06      [19]   45     ld       a, 6(ix)   ;;Color
-   419D DD 4E 02      [19]   46     ld       c, 2(ix)   ;;Width
-   41A0 DD 46 03      [19]   47     ld       b, 3(ix)   ;;Height
-   41A3 CD DB 41      [17]   48     call    cpct_drawSolidBox_asm
-   41A6 C9            [10]   49     ret
-                             50 
-                             51 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                             52 ;; Elimina (en plan limpia bro, no destruye tu vida) a una entidad
-                             53 ;; Registros destruidos: AF, BC, DE, HL
-                             54 ;; Entrada: ix -> Puntero a entidad
-                             55 ;;          a -> Numero total de entidades
-                             56 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                             57 ;;rendersys_clear::
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 54.
-Hexadecimal [16-Bits]
-
-
-
-                             58 ;;_rendcloop:
-                             59 ;;    push        af  
-                             60 ;;    ld               a, 6(ix)  
-                             61 ;;    ex              af, af'     
-                             62 ;;    ld           6(ix), #0x00
-                             63 ;;    pop         af              
-                             64 ;;    push        af
-                             65 ;;    push        ix
-                             66 ;;    call      entityman_getEntityArray_IX
-                             67 ;;    call      entityman_getNumEntities_A
-                             68 ;;    call      rendersys_update ;;Vuelve otro A
-                             69     
-                             70 ;;    pop         ix
-                             71 ;;    pop         af      
-                             72 ;;    ex              af, af' 
-                             73 ;;    ld           6(ix), a
-                             74 
-                             75 ;;    ex              af, af' 
-                             76 ;;    dec         a 
-                             77 ;;    ret z
-                             78 
-                             79 ;;    ld      bc, #entity_size
-                             80 ;;    add     ix, bc
-                             81 ;;    jr _rendcloop
-                             82 ;;    ret
-                             83 
-   41A7                      84 rendersys_clear::
-   41A7 DD 7E 06      [19]   85     ld               a, 6(ix)  
-   41AA 08            [ 4]   86     ex              af, af'    
-   41AB DD 36 06 00   [19]   87     ld           6(ix), #0x00
-                             88     ;;push ix
-                             89     ;;call      entityman_getEntityArray_IX
-                             90     ;;call      entityman_getNumEntities_A
-   41AF CD 8D 41      [17]   91     call      rendersys_update_one ;;Vuelve otro A
-                             92     ;;pop ix
-   41B2 08            [ 4]   93     ex          af, af'
-   41B3 DD 77 06      [19]   94     ld      6(ix),a
->>>>>>> d68e1e5b0a40643a9891dce6a56874027cf701ae

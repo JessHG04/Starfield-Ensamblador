@@ -1,5 +1,9 @@
 .include "cpctelera.h.s"
-.include "entity.h.s"
+;;
+;; ENTITY MANAGER
+;;
+entity_size == 7 ;;X, Y, W, H, Vx, Vy, C
+max_entities == 12
 
 _num_entities::     .db 0x00, 0x00
 _last_elem_ptr::    .dw _entity_array
@@ -22,8 +26,8 @@ entityman_create::
     ld     hl, (_num_entities)
     ld     a, #max_entities
 
-   sub    l  ;;Comprueba que no se haya pasado del maximo que podemos tener
-   ret     z
+    sub     l
+    ret     z
 
     ex    de, hl
 

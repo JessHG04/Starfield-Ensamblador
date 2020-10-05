@@ -8,13 +8,9 @@
 -l /home/jess/Escritorio/cpctelera/cpctelera/cpctelera.lib
 -l z80
 obj/main.rel
-obj/man/entity.h.rel
 obj/man/entity.rel
-obj/sys/generator.h.rel
 obj/sys/generator.rel
-obj/sys/physics.h.rel
 obj/sys/physics.rel
-obj/sys/render.h.rel
 obj/sys/render.rel
 
 -e
