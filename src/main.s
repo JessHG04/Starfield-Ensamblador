@@ -1,16 +1,13 @@
 .include "cpctelera.h.s"
+.include "man/entity.h.s"
+.include "sys/physics.h.s"
+.include "sys/render.h.s"
+
 .area _DATA
 
 .area _CODE
 
 .globl cpct_disableFirmware_asm
-.globl entityman_create
-.globl rendersys_update
-
-.globl entityman_getEntityArray_IX
-.globl entityman_getNumEntities_A
-.globl rendersys_init
-.globl physics_move
 .globl cpct_waitVSYNC_asm
 .globl rendersys_clear
 .globl entityman_clear

@@ -1,10 +1,8 @@
 .include "cpctelera.h.s"
+.include "man/entity.h.s"
 
 .globl cpct_getScreenPtr_asm
 .globl cpct_drawSolidBox_asm
-.globl entity_size
-.globl entityman_getEntityArray_IX
-.globl entityman_getNumEntities_A
 .globl cpct_setVideoMode_asm
 
 rendersys_init::

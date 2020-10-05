@@ -53,9 +53,13 @@ _CODE                               00004000    000002DA =         730. bytes (R
 Files Linked                              [ module(s) ]
 
 obj/main.rel                              [ cpct_keyboard ]
+obj/man/entity.h.rel                      [  ]
 obj/man/entity.rel                        [ cpct_keyboard ]
+obj/sys/generator.h.rel                   [ cpct_keyboard ]
 obj/sys/generator.rel                     [ cpct_keyboard ]
+obj/sys/physics.h.rel                     [  ]
 obj/sys/physics.rel                       [ cpct_keyboard ]
+obj/sys/render.h.rel                      [  ]
 obj/sys/render.rel                        [ cpct_keyboard ]
 
 
