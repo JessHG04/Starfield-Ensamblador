@@ -2752,20 +2752,23 @@ Hexadecimal [16-Bits]
 
 
    4155 28 02         [12]   57     jr      z, _clear
-   4157 20 06         [12]   58     jr      nz, _seguir
+   4157 20 0E         [12]   58     jr      nz, _seguir
    4159                      59 _clear:
                              60     ;;POS SI DA CERO ES QUE HAY QUE LIMPIAR DALE CARLA LIMPIA
    4159 DD 36 06 00   [19]   61     ld      6(ix), #0x00
-                             62     ;;ld      a, (_num_entities)
-                             63     ;;dec     a
-                             64     ;;ld      (_num_entities), a
-   415D 18 00         [12]   65     jr      _seguir
-   415F                      66 _seguir:
-   415F F1            [10]   67     pop     af
-   4160 3D            [ 4]   68     dec     a
-   4161 C8            [11]   69     ret     z
-                             70 
-   4162 01 07 00      [10]   71     ld      bc, #entity_size
-   4165 DD 09         [15]   72     add     ix, bc
-   4167 18 E6         [12]   73     jr      _clearloop
-   4169 C9            [10]   74     ret
+   415D DD 36 05 00   [19]   62     ld      5(ix), #0x00
+   4161 DD 22 CC 40   [20]   63     ld      (_last_elem_ptr), ix
+                             64     
+                             65     ;;ld      a, (_num_entities)
+                             66     ;;dec     a
+                             67     ;;ld      (_num_entities), a
+   4165 18 00         [12]   68     jr      _seguir
+   4167                      69 _seguir:
+   4167 F1            [10]   70     pop     af
+   4168 3D            [ 4]   71     dec     a
+   4169 C8            [11]   72     ret     z
+                             73 
+   416A 01 07 00      [10]   74     ld      bc, #entity_size
+   416D DD 09         [15]   75     add     ix, bc
+   416F 18 DE         [12]   76     jr      _clearloop
+   4171 C9            [10]   77     ret

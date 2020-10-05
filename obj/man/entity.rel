@@ -4,7 +4,7 @@ M cpct_keyboard
 S max_entities Def000C
 S .__.ABS. Def0000
 S entity_size Def0007
-A _CODE size A0 flags 0 addr 0
+A _CODE size A8 flags 0 addr 0
 S _last_elem_ptr Def0002
 S entityman_getNumEntities_A Def005D
 S entityman_create Def0061
@@ -38,13 +38,13 @@ T 85 00
 R 00 00 00 00
 T 85 00
 R 00 00 00 00
-T 85 00 F5 DD 7E 05 FE 10 28 02 20 06
+T 85 00 F5 DD 7E 05 FE 10 28 02 20 0E
 R 00 00 00 00
 T 8F 00
 R 00 00 00 00
-T 8F 00 DD 36 06 00 18 00
+T 8F 00 DD 36 06 00 DD 36 05 00 DD 22 02 00 18 00
+R 00 00 00 00 00 0C 00 00
+T 9D 00
 R 00 00 00 00
-T 95 00
-R 00 00 00 00
-T 95 00 F1 3D C8 01 07 00 DD 09 18 E6 C9
+T 9D 00 F1 3D C8 01 07 00 DD 09 18 DE C9
 R 00 00 00 00

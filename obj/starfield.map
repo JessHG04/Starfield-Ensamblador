@@ -11,16 +11,16 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000000  l__DATA                         
      00000007  entity_size                        cpct_keyboard
      0000000C  max_entities                       cpct_keyboard
-     000002DA  l__CODE                         
+     000002E2  l__CODE                         
      00004000  s__CODE                         
-     000042DA  s__DATA                         
+     000042E2  s__DATA                         
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    000002DA =         730. bytes (REL,CON)
+_CODE                               00004000    000002E2 =         738. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -32,21 +32,21 @@ _CODE                               00004000    000002DA =         730. bytes (R
      00004127  entityman_getNumEntities_A         cpct_keyboard
      0000412B  entityman_create                   cpct_keyboard
      0000414F  entityman_clear                    cpct_keyboard
-     0000416A  physics_move                       cpct_keyboard
-     000041A0  rendersys_init                     cpct_keyboard
-     000041A6  rendersys_update                   cpct_keyboard
-     000041CB  rendersys_update_one               cpct_keyboard
-     000041E5  rendersys_clear                    cpct_keyboard
-     000041F4  cpct_setVideoMode_asm              cpct_video
-     00004201  _cpct_waitVSYNC                    cpct_video
-     00004201  cpct_waitVSYNC_asm                 cpct_video
-     00004209  _cpct_disableFirmware              cpct_firmware
-     00004209  _cpct_removeInterruptHandler       cpct_firmware
-     00004209  cpct_disableFirmware_asm           cpct_firmware
-     00004209  cpct_removeInterruptHandler_asm    cpct_firmware
-     00004219  cpct_drawSolidBox_asm              cpct_sprites
-     000042BD  _cpct_mode_rom_status              cpct_firmware
-     000042BE  cpct_getScreenPtr_asm              cpct_video
+     00004172  physics_move                       cpct_keyboard
+     000041A8  rendersys_init                     cpct_keyboard
+     000041AE  rendersys_update                   cpct_keyboard
+     000041D3  rendersys_update_one               cpct_keyboard
+     000041ED  rendersys_clear                    cpct_keyboard
+     000041FC  cpct_setVideoMode_asm              cpct_video
+     00004209  _cpct_waitVSYNC                    cpct_video
+     00004209  cpct_waitVSYNC_asm                 cpct_video
+     00004211  _cpct_disableFirmware              cpct_firmware
+     00004211  _cpct_removeInterruptHandler       cpct_firmware
+     00004211  cpct_disableFirmware_asm           cpct_firmware
+     00004211  cpct_removeInterruptHandler_asm    cpct_firmware
+     00004221  cpct_drawSolidBox_asm              cpct_sprites
+     000042C5  _cpct_mode_rom_status              cpct_firmware
+     000042C6  cpct_getScreenPtr_asm              cpct_video
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 

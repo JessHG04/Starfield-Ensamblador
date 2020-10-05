@@ -59,6 +59,9 @@ _clearloop:
 _clear:
     ;;POS SI DA CERO ES QUE HAY QUE LIMPIAR DALE CARLA LIMPIA
     ld      6(ix), #0x00
+    ld      5(ix), #0x00
+    ld      (_last_elem_ptr), ix
+    
     ;;ld      a, (_num_entities)
     ;;dec     a
     ;;ld      (_num_entities), a
