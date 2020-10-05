@@ -2697,44 +2697,75 @@ Hexadecimal [16-Bits]
                      0007     5 entity_size == 7 ;;X, Y, W, H, Vx, Vy, C
                      000C     6 max_entities == 12
                               7 
-   40B9 00 00                 8 _num_entities::     .db 0x00, 0x00
-   40BB BD 40                 9 _last_elem_ptr::    .dw _entity_array
-   40BD                      10 _entity_array::
-   40BD                      11     .ds entity_size*max_entities
+   40CA 00 00                 8 _num_entities::     .db 0x00, 0x00
+   40CC CE 40                 9 _last_elem_ptr::    .dw _entity_array
+   40CE                      10 _entity_array::
+   40CE                      11     .ds entity_size*max_entities
                              12 
-   4111                      13 entityman_getEntityArray_IX::
-   4111 DD 21 BD 40   [14]   14     ld      ix, #_entity_array
-   4115 C9            [10]   15     ret
+   4122                      13 entityman_getEntityArray_IX::
+   4122 DD 21 CE 40   [14]   14     ld      ix, #_entity_array
+   4126 C9            [10]   15     ret
                              16 
-   4116                      17 entityman_getNumEntities_A::
-   4116 3A B9 40      [13]   18     ld      a, (_num_entities)
-   4119 C9            [10]   19     ret
+   4127                      17 entityman_getNumEntities_A::
+   4127 3A CA 40      [13]   18     ld      a, (_num_entities)
+   412A C9            [10]   19     ret
                              20 
                              21 ;;INPUT
                              22 ;;      HL: pointer to entity initializer byte
-   411A                      23 entityman_create::
-   411A EB            [ 4]   24    ex    de, hl
+   412B                      23 entityman_create::
+   412B EB            [ 4]   24     ex    de, hl
                              25 
-   411B 2A B9 40      [16]   26    ld     hl, (_num_entities)
-   411E 3E 0C         [ 7]   27    ld     a, #max_entities
+   412C 2A CA 40      [16]   26     ld     hl, (_num_entities)
+   412F 3E 0C         [ 7]   27     ld     a, #max_entities
                              28 
-   4120 95            [ 4]   29    sub    l
-   4121 C8            [11]   30    ret     z
+   4131 95            [ 4]   29     sub     l
+   4132 C8            [11]   30     ret     z
                              31 
-   4122 EB            [ 4]   32     ex    de, hl
+   4133 EB            [ 4]   32     ex    de, hl
                              33 
-   4123 ED 5B BB 40   [20]   34    ld      de, (_last_elem_ptr)
-   4127 01 07 00      [10]   35    ld      bc, #entity_size
-   412A ED B0         [21]   36    ldir
+   4134 ED 5B CC 40   [20]   34     ld      de, (_last_elem_ptr)
+   4138 01 07 00      [10]   35     ld      bc, #entity_size
+   413B ED B0         [21]   36     ldir
                              37 
-   412C 3A B9 40      [13]   38    ld       a, (_num_entities)
-   412F 3C            [ 4]   39    inc      a
-   4130 32 B9 40      [13]   40    ld      (_num_entities), a
+   413D 3A CA 40      [13]   38     ld       a, (_num_entities)
+   4140 3C            [ 4]   39     inc      a
+   4141 32 CA 40      [13]   40     ld      (_num_entities), a
                              41 
-   4133 2A BB 40      [16]   42    ld      hl, (_last_elem_ptr)
-   4136 01 07 00      [10]   43    ld      bc, #entity_size
-   4139 09            [11]   44    add     hl, bc
-   413A 22 BB 40      [16]   45    ld      (_last_elem_ptr), hl
+   4144 2A CC 40      [16]   42     ld      hl, (_last_elem_ptr)
+   4147 01 07 00      [10]   43     ld      bc, #entity_size
+   414A 09            [11]   44     add     hl, bc
+   414B 22 CC 40      [16]   45     ld      (_last_elem_ptr), hl
                              46 
-   413D C9            [10]   47    ret
+   414E C9            [10]   47     ret
                              48 
+                             49 ;;INPUT
+                             50 ;;  IX -> Array
+                             51 ;;  A -> _num_entities
+   414F                      52 entityman_clear::
+   414F                      53 _clearloop:
+   414F F5            [11]   54     push af
+   4150 DD 7E 05      [19]   55     ld      a, 5(ix)
+   4153 FE 10         [ 7]   56     cp      #0x10
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 53.
+Hexadecimal [16-Bits]
+
+
+
+   4155 28 02         [12]   57     jr      z, _clear
+   4157 20 06         [12]   58     jr      nz, _seguir
+   4159                      59 _clear:
+                             60     ;;POS SI DA CERO ES QUE HAY QUE LIMPIAR DALE CARLA LIMPIA
+   4159 DD 36 06 00   [19]   61     ld      6(ix), #0x00
+                             62     ;;ld      a, (_num_entities)
+                             63     ;;dec     a
+                             64     ;;ld      (_num_entities), a
+   415D 18 00         [12]   65     jr      _seguir
+   415F                      66 _seguir:
+   415F F1            [10]   67     pop     af
+   4160 3D            [ 4]   68     dec     a
+   4161 C8            [11]   69     ret     z
+                             70 
+   4162 01 07 00      [10]   71     ld      bc, #entity_size
+   4165 DD 09         [15]   72     add     ix, bc
+   4167 18 E6         [12]   73     jr      _clearloop
+   4169 C9            [10]   74     ret

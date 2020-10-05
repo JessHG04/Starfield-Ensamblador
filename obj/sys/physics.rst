@@ -2714,27 +2714,109 @@ Hexadecimal [16-Bits]
                              22 ;;   jr _phyloop
                              23 ;;   ret
                              24 
-   413E                      25 physics_move::
-   413E                      26 _phyloop:
-   413E F5            [11]   27    push     af
-                             28    ;;call     rendersys_clear
-                             29 
-                             30    ;;RENDER CLEAR
-   413F DD 7E 06      [19]   31    ld               a, 6(ix)  
-   4142 08            [ 4]   32    ex              af, af'    
-   4143 DD 36 06 00   [19]   33    ld           6(ix), #0x00
-   4147 CD 8D 41      [17]   34    call      rendersys_update_one ;;Vuelve otro A
-   414A 08            [ 4]   35    ex          af, af'
-   414B DD 77 06      [19]   36    ld      6(ix),a
-                             37    ;;;;;;;;;;;;
-   414E DD 7E 00      [19]   38    ld        a, 0(ix)
-   4151 DD 86 04      [19]   39    add   4(ix)
-   4154 DD 77 00      [19]   40    ld    0(ix), a
-   4157 F1            [10]   41    pop      af
-   4158 3D            [ 4]   42    dec       a
-   4159 C8            [11]   43    ret       z
-                             44 
-   415A 01 07 00      [10]   45    ld      bc, #entity_size
-   415D DD 09         [15]   46    add     ix, bc
-   415F 18 DD         [12]   47    jr _phyloop
-   4161 C9            [10]   48    ret
+                             25 ;;physics_move::
+                             26 ;;_phyloop:
+                             27 ;;   push     af
+                             28 ;;   ;;call     rendersys_clear
+                             29 ;;
+                             30 ;;   ;;RENDER CLEAR
+                             31 ;;   ld               a, 6(ix)  
+                             32 ;;   ex              af, af'    
+                             33 ;;   ld           6(ix), #0x00
+                             34 ;;   call      rendersys_update_one ;;Vuelve otro A
+                             35 ;;   ex             af, af'
+                             36 ;;   ld          6(ix),a
+                             37 ;;   ;;;;;;;;;;;;
+                             38 ;;   ld              a, 0(ix)
+                             39 ;;   add   4(ix)
+                             40 ;;   jr              c, _carry
+                             41 ;;   jr             nc, _seguir
+                             42 ;;_seguir:
+                             43 ;;   ld    0(ix), a
+                             44 ;;   pop      af
+                             45 ;;   dec       a
+                             46 ;;   ret       z
+                             47 ;;
+                             48 ;;   ld      bc, #entity_size
+                             49 ;;   add     ix, bc
+                             50 ;;   jr _phyloop
+                             51 ;;   ret
+                             52 ;;_carry:
+                             53 ;;   ex    af, af'
+                             54 ;;   ld    5(ix), #0x10
+                             55 ;;   ex    af, af'
+                             56 ;;   jr    _seguir
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 53.
+Hexadecimal [16-Bits]
+
+
+
+                             57 
+   416A                      58 physics_move::
+   416A                      59 _phyloop:
+   416A F5            [11]   60    push     af
+                             61    ;;call     rendersys_clear
+                             62 
+                             63    ;;RENDER CLEAR
+   416B DD 7E 06      [19]   64    ld               a, 6(ix)  
+   416E 08            [ 4]   65    ex              af, af'    
+   416F DD 36 06 00   [19]   66    ld           6(ix), #0x00
+   4173 CD CB 41      [17]   67    call      rendersys_update_one ;;Vuelve otro A
+   4176 08            [ 4]   68    ex             af, af'
+   4177 DD 77 06      [19]   69    ld          6(ix),a
+                             70    ;;;;;;;;;;;;
+   417A DD 7E 00      [19]   71    ld              a, 0(ix)
+   417D DD 86 04      [19]   72    add   4(ix)
+   4180 DD 77 00      [19]   73    ld    0(ix), a
+   4183 FE 00         [ 7]   74    cp       #0x00
+   4185 28 11         [12]   75    jr              z, _carry
+   4187 FE 50         [ 7]   76    cp       #0x50
+   4189 28 0D         [12]   77    jr              z, _carry
+                             78    ;;cp       #0xA0
+                             79    ;;jr              z, _carry
+                             80    ;;cp       #0xF0
+                             81    ;;jr              z, _carry
+                             82    ;;cp       #0x40
+                             83    ;;jr              z, _carry
+                             84    ;;cp       #0x90
+                             85    ;;jr              z, _carry
+                             86    ;;cp       #0xE0
+                             87    ;;jr              z, _carry
+                             88    ;;cp       #0x30
+                             89    ;;jr              z, _carry
+                             90    ;;cp       #0x80
+                             91    ;;jr              z, _carry
+                             92    ;;cp       #0xD0
+                             93    ;;jr              z, _carry
+                             94    ;;cp       #0x20
+                             95    ;;jr              z, _carry
+                             96    ;;cp       #0x70
+                             97    ;;jr              z, _carry
+                             98    ;;cp       #0xC0
+                             99    ;;jr              z, _carry
+                            100    ;;cp       #0x10
+                            101    ;;jr              z, _carry
+                            102    ;;cp       #0x60
+                            103    ;;jr              z, _carry
+                            104    ;;cp       #0xB0
+                            105    ;;jr              z, _carry
+   418B 30 00         [12]  106    jr             nc, _seguir
+   418D                     107 _seguir:
+   418D F1            [10]  108    pop      af
+   418E 3D            [ 4]  109    dec       a
+   418F C8            [11]  110    ret       z
+                            111 
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 54.
+Hexadecimal [16-Bits]
+
+
+
+   4190 01 07 00      [10]  112    ld      bc, #entity_size
+   4193 DD 09         [15]  113    add     ix, bc
+   4195 18 D3         [12]  114    jr _phyloop
+   4197 C9            [10]  115    ret
+   4198                     116 _carry:
+   4198 08            [ 4]  117    ex    af, af'
+   4199 DD 36 05 10   [19]  118    ld    5(ix), #0x10
+   419D 08            [ 4]  119    ex    af, af'
+   419E 18 ED         [12]  120    jr    _seguir

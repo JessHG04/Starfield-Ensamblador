@@ -2713,28 +2713,59 @@ Hexadecimal [16-Bits]
                              21 ;;INPUT
                              22 ;;      HL: pointer to entity initializer byte
    0061                      23 entityman_create::
-   0061 EB            [ 4]   24    ex    de, hl
+   0061 EB            [ 4]   24     ex    de, hl
                              25 
-   0062 2A 00 00      [16]   26    ld     hl, (_num_entities)
-   0065 3E 0C         [ 7]   27    ld     a, #max_entities
+   0062 2A 00 00      [16]   26     ld     hl, (_num_entities)
+   0065 3E 0C         [ 7]   27     ld     a, #max_entities
                              28 
-   0067 95            [ 4]   29    sub    l
-   0068 C8            [11]   30    ret     z
+   0067 95            [ 4]   29     sub     l
+   0068 C8            [11]   30     ret     z
                              31 
    0069 EB            [ 4]   32     ex    de, hl
                              33 
-   006A ED 5B 02 00   [20]   34    ld      de, (_last_elem_ptr)
-   006E 01 07 00      [10]   35    ld      bc, #entity_size
-   0071 ED B0         [21]   36    ldir
+   006A ED 5B 02 00   [20]   34     ld      de, (_last_elem_ptr)
+   006E 01 07 00      [10]   35     ld      bc, #entity_size
+   0071 ED B0         [21]   36     ldir
                              37 
-   0073 3A 00 00      [13]   38    ld       a, (_num_entities)
-   0076 3C            [ 4]   39    inc      a
-   0077 32 00 00      [13]   40    ld      (_num_entities), a
+   0073 3A 00 00      [13]   38     ld       a, (_num_entities)
+   0076 3C            [ 4]   39     inc      a
+   0077 32 00 00      [13]   40     ld      (_num_entities), a
                              41 
-   007A 2A 02 00      [16]   42    ld      hl, (_last_elem_ptr)
-   007D 01 07 00      [10]   43    ld      bc, #entity_size
-   0080 09            [11]   44    add     hl, bc
-   0081 22 02 00      [16]   45    ld      (_last_elem_ptr), hl
+   007A 2A 02 00      [16]   42     ld      hl, (_last_elem_ptr)
+   007D 01 07 00      [10]   43     ld      bc, #entity_size
+   0080 09            [11]   44     add     hl, bc
+   0081 22 02 00      [16]   45     ld      (_last_elem_ptr), hl
                              46 
-   0084 C9            [10]   47    ret
+   0084 C9            [10]   47     ret
                              48 
+                             49 ;;INPUT
+                             50 ;;  IX -> Array
+                             51 ;;  A -> _num_entities
+   0085                      52 entityman_clear::
+   0085                      53 _clearloop:
+   0085 F5            [11]   54     push af
+   0086 DD 7E 05      [19]   55     ld      a, 5(ix)
+   0089 FE 10         [ 7]   56     cp      #0x10
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 53.
+Hexadecimal [16-Bits]
+
+
+
+   008B 28 02         [12]   57     jr      z, _clear
+   008D 20 06         [12]   58     jr      nz, _seguir
+   008F                      59 _clear:
+                             60     ;;POS SI DA CERO ES QUE HAY QUE LIMPIAR DALE CARLA LIMPIA
+   008F DD 36 06 00   [19]   61     ld      6(ix), #0x00
+                             62     ;;ld      a, (_num_entities)
+                             63     ;;dec     a
+                             64     ;;ld      (_num_entities), a
+   0093 18 00         [12]   65     jr      _seguir
+   0095                      66 _seguir:
+   0095 F1            [10]   67     pop     af
+   0096 3D            [ 4]   68     dec     a
+   0097 C8            [11]   69     ret     z
+                             70 
+   0098 01 07 00      [10]   71     ld      bc, #entity_size
+   009B DD 09         [15]   72     add     ix, bc
+   009D 18 E6         [12]   73     jr      _clearloop
+   009F C9            [10]   74     ret
