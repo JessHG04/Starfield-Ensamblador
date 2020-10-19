@@ -2705,7 +2705,7 @@ Hexadecimal [16-Bits]
                              13 .globl physics_move
                              14 .globl cpct_waitVSYNC_asm
                              15 .globl rendersys_clear
-                             16 .globl entityman_clear
+                             16 .globl entityman_destroy
                              17 
                              18 ;;X, Y, W, H, Vx, Vy, C
                              19 ;;s:      .db 0x00, 0x00, 0x01, 0x02, 0x02, 0x00, 0x0F
@@ -2752,56 +2752,56 @@ Hexadecimal [16-Bits]
 
 
    4054                      45 _main::
-   4054 CD 11 42      [17]   46    call cpct_disableFirmware_asm
+   4054 CD CC 41      [17]   46    call cpct_disableFirmware_asm
                              47 
                              48    ;;Init systems
-   4057 CD A8 41      [17]   49    call rendersys_init
+   4057 CD 63 41      [17]   49    call rendersys_init
                              50 
    405A 21 00 40      [10]   51    ld    hl, #s
-   405D CD 2B 41      [17]   52    call entityman_create
+   405D CD E6 40      [17]   52    call entityman_create
    4060 21 07 40      [10]   53    ld    hl, #st
-   4063 CD 2B 41      [17]   54    call entityman_create
+   4063 CD E6 40      [17]   54    call entityman_create
    4066 21 0E 40      [10]   55    ld    hl, #sta
-   4069 CD 2B 41      [17]   56    call entityman_create
+   4069 CD E6 40      [17]   56    call entityman_create
    406C 21 15 40      [10]   57    ld    hl, #star
-   406F CD 2B 41      [17]   58    call entityman_create
+   406F CD E6 40      [17]   58    call entityman_create
                              59 
    4072 21 1C 40      [10]   60    ld    hl, #ss
-   4075 CD 2B 41      [17]   61    call entityman_create
+   4075 CD E6 40      [17]   61    call entityman_create
    4078 21 23 40      [10]   62    ld    hl, #sst
-   407B CD 2B 41      [17]   63    call entityman_create
+   407B CD E6 40      [17]   63    call entityman_create
    407E 21 2A 40      [10]   64    ld    hl, #ssta
-   4081 CD 2B 41      [17]   65    call entityman_create
+   4081 CD E6 40      [17]   65    call entityman_create
    4084 21 31 40      [10]   66    ld    hl, #sstar
-   4087 CD 2B 41      [17]   67    call entityman_create
+   4087 CD E6 40      [17]   67    call entityman_create
                              68 
    408A 21 38 40      [10]   69    ld    hl, #sss
-   408D CD 2B 41      [17]   70    call entityman_create
+   408D CD E6 40      [17]   70    call entityman_create
    4090 21 3F 40      [10]   71    ld    hl, #ssst
-   4093 CD 2B 41      [17]   72    call entityman_create
+   4093 CD E6 40      [17]   72    call entityman_create
    4096 21 46 40      [10]   73    ld    hl, #sssta
-   4099 CD 2B 41      [17]   74    call entityman_create
+   4099 CD E6 40      [17]   74    call entityman_create
    409C 21 4D 40      [10]   75    ld    hl, #ssstar
-   409F CD 2B 41      [17]   76    call entityman_create
+   409F CD E6 40      [17]   76    call entityman_create
                              77 
    40A2                      78 loop:
-   40A2 CD 22 41      [17]   79    call entityman_getEntityArray_IX
-   40A5 CD 27 41      [17]   80    call entityman_getNumEntities_A
-   40A8 CD 72 41      [17]   81    call physics_move
+   40A2 CD DD 40      [17]   79    call entityman_getEntityArray_IX
+   40A5 CD E2 40      [17]   80    call entityman_getNumEntities_A
+   40A8 CD 2D 41      [17]   81    call physics_move
                              82    
-   40AB CD 22 41      [17]   83    call entityman_getEntityArray_IX
-   40AE CD 27 41      [17]   84    call entityman_getNumEntities_A
-   40B1 CD AE 41      [17]   85    call rendersys_update
+   40AB CD DD 40      [17]   83    call entityman_getEntityArray_IX
+   40AE CD E2 40      [17]   84    call entityman_getNumEntities_A
+   40B1 CD 69 41      [17]   85    call rendersys_update
                              86 
-   40B4 CD 22 41      [17]   87    call entityman_getEntityArray_IX
-   40B7 CD 27 41      [17]   88    call entityman_getNumEntities_A
-   40BA CD 4F 41      [17]   89    call entityman_clear
+   40B4 CD DD 40      [17]   87    call entityman_getEntityArray_IX
+   40B7 CD E2 40      [17]   88    call entityman_getNumEntities_A
+   40BA CD 0A 41      [17]   89    call entityman_destroy
                              90 
-   40BD CD 09 42      [17]   91    call cpct_waitVSYNC_asm
-   40C0 CD 27 41      [17]   92    call entityman_getNumEntities_A
-   40C3 FE 00         [ 7]   93    cp    #0x00
-   40C5 C8            [11]   94    ret   z
-   40C6 20 DA         [12]   95    jr    nz, loop
-                             96 
-   40C8                      97 looop:
-   40C8 18 FE         [12]   98    jr    .
+   40BD CD C4 41      [17]   91    call cpct_waitVSYNC_asm
+                             92    ;;call entityman_getNumEntities_A
+                             93    ;;cp    #0x00
+                             94    ;;ret   z
+                             95    ;;jr    nz, loop
+   40C0 18 E0         [12]   96    jr    loop
+   40C2                      97 looop:
+   40C2 18 FE         [12]   98    jr    .

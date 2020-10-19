@@ -13,7 +13,7 @@
 .globl physics_move
 .globl cpct_waitVSYNC_asm
 .globl rendersys_clear
-.globl entityman_clear
+.globl entityman_destroy
 
 ;;X, Y, W, H, Vx, Vy, C
 ;;s:      .db 0x00, 0x00, 0x01, 0x02, 0x02, 0x00, 0x0F
@@ -86,13 +86,13 @@ loop:
 
    call entityman_getEntityArray_IX
    call entityman_getNumEntities_A
-   call entityman_clear
+   call entityman_destroy
 
    call cpct_waitVSYNC_asm
-   call entityman_getNumEntities_A
-   cp    #0x00
-   ret   z
-   jr    nz, loop
-
+   ;;call entityman_getNumEntities_A
+   ;;cp    #0x00
+   ;;ret   z
+   ;;jr    nz, loop
+   jr    loop
 looop:
    jr    .

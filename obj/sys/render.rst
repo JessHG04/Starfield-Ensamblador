@@ -2699,48 +2699,48 @@ Hexadecimal [16-Bits]
                               7 .globl entityman_getNumEntities_A
                               8 .globl cpct_setVideoMode_asm
                               9 
-   41A8                      10 rendersys_init::
-   41A8 0E 00         [ 7]   11     ld      c, #0x00
-   41AA CD FC 41      [17]   12     call cpct_setVideoMode_asm
-   41AD C9            [10]   13     ret
+   4163                      10 rendersys_init::
+   4163 0E 00         [ 7]   11     ld      c, #0x00
+   4165 CD B7 41      [17]   12     call cpct_setVideoMode_asm
+   4168 C9            [10]   13     ret
                              14 ;; INPUT
                              15 ;;      IX: Pointer to first entity to render
                              16 ;;      A: Number of entites to render
-   41AE                      17 rendersys_update::
-   41AE                      18 _renloop:
-   41AE F5            [11]   19     push    af
-   41AF 11 00 C0      [10]   20     ld      de, #0xC000
-   41B2 DD 4E 00      [19]   21     ld       c, 0(ix)   ;;X
-   41B5 DD 46 01      [19]   22     ld       b, 1(ix)   ;;Y
-   41B8 CD C6 42      [17]   23     call    cpct_getScreenPtr_asm
+   4169                      17 rendersys_update::
+   4169                      18 _renloop:
+   4169 F5            [11]   19     push    af
+   416A 11 00 C0      [10]   20     ld      de, #0xC000
+   416D DD 4E 00      [19]   21     ld       c, 0(ix)   ;;X
+   4170 DD 46 01      [19]   22     ld       b, 1(ix)   ;;Y
+   4173 CD 81 42      [17]   23     call    cpct_getScreenPtr_asm
                              24 
-   41BB EB            [ 4]   25     ex      de, hl
-   41BC DD 7E 06      [19]   26     ld       a, 6(ix)   ;;Color
-   41BF DD 4E 02      [19]   27     ld       c, 2(ix)   ;;Width
-   41C2 DD 46 03      [19]   28     ld       b, 3(ix)   ;;Height
-   41C5 CD 21 42      [17]   29     call    cpct_drawSolidBox_asm
+   4176 EB            [ 4]   25     ex      de, hl
+   4177 DD 7E 06      [19]   26     ld       a, 6(ix)   ;;Color
+   417A DD 4E 02      [19]   27     ld       c, 2(ix)   ;;Width
+   417D DD 46 03      [19]   28     ld       b, 3(ix)   ;;Height
+   4180 CD DC 41      [17]   29     call    cpct_drawSolidBox_asm
                              30 
-   41C8 F1            [10]   31     pop     af
-   41C9 3D            [ 4]   32     dec     a
-   41CA C8            [11]   33     ret     z
+   4183 F1            [10]   31     pop     af
+   4184 3D            [ 4]   32     dec     a
+   4185 C8            [11]   33     ret     z
                              34 
-   41CB 01 07 00      [10]   35     ld      bc, #entity_size
-   41CE DD 09         [15]   36     add     ix, bc
-   41D0 18 DC         [12]   37     jr _renloop
-   41D2 C9            [10]   38     ret
+   4186 01 07 00      [10]   35     ld      bc, #entity_size
+   4189 DD 09         [15]   36     add     ix, bc
+   418B 18 DC         [12]   37     jr _renloop
+   418D C9            [10]   38     ret
                              39 
-   41D3                      40 rendersys_update_one::
-   41D3 11 00 C0      [10]   41     ld      de, #0xC000
-   41D6 DD 4E 00      [19]   42     ld       c, 0(ix)   ;;X
-   41D9 DD 46 01      [19]   43     ld       b, 1(ix)   ;;Y
-   41DC CD C6 42      [17]   44     call    cpct_getScreenPtr_asm
+   418E                      40 rendersys_update_one::
+   418E 11 00 C0      [10]   41     ld      de, #0xC000
+   4191 DD 4E 00      [19]   42     ld       c, 0(ix)   ;;X
+   4194 DD 46 01      [19]   43     ld       b, 1(ix)   ;;Y
+   4197 CD 81 42      [17]   44     call    cpct_getScreenPtr_asm
                              45 
-   41DF EB            [ 4]   46     ex      de, hl
-   41E0 DD 7E 06      [19]   47     ld       a, 6(ix)   ;;Color
-   41E3 DD 4E 02      [19]   48     ld       c, 2(ix)   ;;Width
-   41E6 DD 46 03      [19]   49     ld       b, 3(ix)   ;;Height
-   41E9 CD 21 42      [17]   50     call    cpct_drawSolidBox_asm
-   41EC C9            [10]   51     ret
+   419A EB            [ 4]   46     ex      de, hl
+   419B DD 7E 06      [19]   47     ld       a, 6(ix)   ;;Color
+   419E DD 4E 02      [19]   48     ld       c, 2(ix)   ;;Width
+   41A1 DD 46 03      [19]   49     ld       b, 3(ix)   ;;Height
+   41A4 CD DC 41      [17]   50     call    cpct_drawSolidBox_asm
+   41A7 C9            [10]   51     ret
                              52 
                              53 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                              54 ;; Elimina (en plan limpia bro, no destruye tu vida) a una entidad
@@ -2780,14 +2780,14 @@ Hexadecimal [16-Bits]
                              83 ;;    jr _rendcloop
                              84 ;;    ret
                              85 
-   41ED                      86 rendersys_clear::
-   41ED DD 7E 06      [19]   87     ld               a, 6(ix)  
-   41F0 08            [ 4]   88     ex              af, af'    
-   41F1 DD 36 06 00   [19]   89     ld           6(ix), #0x00
+   41A8                      86 rendersys_clear::
+   41A8 DD 7E 06      [19]   87     ld               a, 6(ix)  
+   41AB 08            [ 4]   88     ex              af, af'    
+   41AC DD 36 06 00   [19]   89     ld           6(ix), #0x00
                              90     ;;push ix
                              91     ;;call      entityman_getEntityArray_IX
                              92     ;;call      entityman_getNumEntities_A
-   41F5 CD D3 41      [17]   93     call      rendersys_update_one ;;Vuelve otro A
+   41B0 CD 8E 41      [17]   93     call      rendersys_update_one ;;Vuelve otro A
                              94     ;;pop ix
-   41F8 08            [ 4]   95     ex          af, af'
-   41F9 DD 77 06      [19]   96     ld      6(ix),a
+   41B3 08            [ 4]   95     ex          af, af'
+   41B4 DD 77 06      [19]   96     ld      6(ix),a

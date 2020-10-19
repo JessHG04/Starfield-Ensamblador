@@ -2800,7 +2800,7 @@ Hexadecimal [16-Bits]
                             103    ;;jr              z, _carry
                             104    ;;cp       #0xB0
                             105    ;;jr              z, _carry
-   0021 30 00         [12]  106    jr             nc, _seguir
+   0021 20 00         [12]  106    jr             nz, _seguir
    0023                     107 _seguir:
    0023 F1            [10]  108    pop      af
    0024 3D            [ 4]  109    dec       a

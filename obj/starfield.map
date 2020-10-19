@@ -9,44 +9,44 @@ Area                                    Addr        Size        Decimal Bytes (A
       -----  --------------------------------   ------------------------
      00000000  .__.ABS.                           cpct_video
      00000000  l__DATA                         
+     00000003  max_entities                       cpct_keyboard
      00000007  entity_size                        cpct_keyboard
-     0000000C  max_entities                       cpct_keyboard
-     000002E2  l__CODE                         
+     0000029D  l__CODE                         
      00004000  s__CODE                         
-     000042E2  s__DATA                         
+     0000429D  s__DATA                         
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    000002E2 =         738. bytes (REL,CON)
+_CODE                               00004000    0000029D =         669. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
      00004054  _main                              cpct_keyboard
-     000040CA  _num_entities                      cpct_keyboard
-     000040CC  _last_elem_ptr                     cpct_keyboard
-     000040CE  _entity_array                      cpct_keyboard
-     00004122  entityman_getEntityArray_IX        cpct_keyboard
-     00004127  entityman_getNumEntities_A         cpct_keyboard
-     0000412B  entityman_create                   cpct_keyboard
-     0000414F  entityman_clear                    cpct_keyboard
-     00004172  physics_move                       cpct_keyboard
-     000041A8  rendersys_init                     cpct_keyboard
-     000041AE  rendersys_update                   cpct_keyboard
-     000041D3  rendersys_update_one               cpct_keyboard
-     000041ED  rendersys_clear                    cpct_keyboard
-     000041FC  cpct_setVideoMode_asm              cpct_video
-     00004209  _cpct_waitVSYNC                    cpct_video
-     00004209  cpct_waitVSYNC_asm                 cpct_video
-     00004211  _cpct_disableFirmware              cpct_firmware
-     00004211  _cpct_removeInterruptHandler       cpct_firmware
-     00004211  cpct_disableFirmware_asm           cpct_firmware
-     00004211  cpct_removeInterruptHandler_asm    cpct_firmware
-     00004221  cpct_drawSolidBox_asm              cpct_sprites
-     000042C5  _cpct_mode_rom_status              cpct_firmware
-     000042C6  cpct_getScreenPtr_asm              cpct_video
+     000040C4  _num_entities                      cpct_keyboard
+     000040C6  _last_elem_ptr                     cpct_keyboard
+     000040C8  _entity_array                      cpct_keyboard
+     000040DD  entityman_getEntityArray_IX        cpct_keyboard
+     000040E2  entityman_getNumEntities_A         cpct_keyboard
+     000040E6  entityman_create                   cpct_keyboard
+     0000410A  entityman_destroy                  cpct_keyboard
+     0000412D  physics_move                       cpct_keyboard
+     00004163  rendersys_init                     cpct_keyboard
+     00004169  rendersys_update                   cpct_keyboard
+     0000418E  rendersys_update_one               cpct_keyboard
+     000041A8  rendersys_clear                    cpct_keyboard
+     000041B7  cpct_setVideoMode_asm              cpct_video
+     000041C4  _cpct_waitVSYNC                    cpct_video
+     000041C4  cpct_waitVSYNC_asm                 cpct_video
+     000041CC  _cpct_disableFirmware              cpct_firmware
+     000041CC  _cpct_removeInterruptHandler       cpct_firmware
+     000041CC  cpct_disableFirmware_asm           cpct_firmware
+     000041CC  cpct_removeInterruptHandler_asm    cpct_firmware
+     000041DC  cpct_drawSolidBox_asm              cpct_sprites
+     00004280  _cpct_mode_rom_status              cpct_firmware
+     00004281  cpct_getScreenPtr_asm              cpct_video
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 

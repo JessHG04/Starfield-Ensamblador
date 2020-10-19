@@ -57,7 +57,7 @@ Symbol Table
   0 _main      0054 GR  |     cpct_dis   **** GX  |     cpct_pag=  0000 
     cpct_pag=  0010     |     cpct_pag=  0020     |     cpct_pag=  0030 
     cpct_wai   **** GX  |     entityma   **** GX  |     entityma   **** GX
-    entityma   **** GX  |     entityma   **** GX  |   0 looop      00C8 R
+    entityma   **** GX  |     entityma   **** GX  |   0 looop      00C2 R
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
@@ -76,6 +76,6 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE      size   CA   flags    0
+   0 _CODE      size   C4   flags    0
    1 _DATA      size    0   flags    0
 
