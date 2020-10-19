@@ -103,7 +103,7 @@ _phyloop:
    ;;jr              z, _carry
    ;;cp       #0xB0
    ;;jr              z, _carry
-   jr             nz, _seguir
+   jr             nc, _seguir
 _seguir:
    pop      af
    dec       a

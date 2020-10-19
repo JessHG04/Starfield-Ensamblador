@@ -2695,80 +2695,80 @@ Hexadecimal [16-Bits]
                               3 ;; ENTITY MANAGER
                               4 ;;
                      0007     5 entity_size == 7 ;;X, Y, W, H, Vx, Vy, C
-                     0003     6 max_entities == 3
+                     000C     6 max_entities == 12
                               7 
    0000 00 00                 8 _num_entities::     .db 0x00, 0x00
    0002 04 00                 9 _last_elem_ptr::    .dw _entity_array
    0004                      10 _entity_array::
    0004                      11     .ds entity_size*max_entities
                              12 
-   0019                      13 entityman_getEntityArray_IX::
-   0019 DD 21 04 00   [14]   14     ld      ix, #_entity_array
-   001D C9            [10]   15     ret
+   0058                      13 entityman_getEntityArray_IX::
+   0058 DD 21 04 00   [14]   14     ld      ix, #_entity_array
+   005C C9            [10]   15     ret
                              16 
-   001E                      17 entityman_getNumEntities_A::
-   001E 3A 00 00      [13]   18     ld      a, (_num_entities)
-   0021 C9            [10]   19     ret
+   005D                      17 entityman_getNumEntities_A::
+   005D 3A 00 00      [13]   18     ld      a, (_num_entities)
+   0060 C9            [10]   19     ret
                              20 
                              21 ;;INPUT
                              22 ;;      HL: pointer to entity initializer byte
-   0022                      23 entityman_create::
-   0022 EB            [ 4]   24     ex    de, hl
+   0061                      23 entityman_create::
+   0061 EB            [ 4]   24     ex    de, hl
                              25 
-   0023 2A 00 00      [16]   26     ld     hl, (_num_entities)
-   0026 3E 03         [ 7]   27     ld     a, #max_entities
+   0062 2A 00 00      [16]   26     ld     hl, (_num_entities)
+   0065 3E 0C         [ 7]   27     ld     a, #max_entities
                              28 
-   0028 95            [ 4]   29     sub     l
-   0029 C8            [11]   30     ret     z
+   0067 95            [ 4]   29     sub     l
+   0068 C8            [11]   30     ret     z
                              31 
-   002A EB            [ 4]   32     ex    de, hl
+   0069 EB            [ 4]   32     ex    de, hl
                              33 
-   002B ED 5B 02 00   [20]   34     ld      de, (_last_elem_ptr)
-   002F 01 07 00      [10]   35     ld      bc, #entity_size
-   0032 ED B0         [21]   36     ldir
+   006A ED 5B 02 00   [20]   34     ld      de, (_last_elem_ptr)
+   006E 01 07 00      [10]   35     ld      bc, #entity_size
+   0071 ED B0         [21]   36     ldir
                              37 
-   0034 3A 00 00      [13]   38     ld       a, (_num_entities)
-   0037 3C            [ 4]   39     inc      a
-   0038 32 00 00      [13]   40     ld      (_num_entities), a
+   0073 3A 00 00      [13]   38     ld       a, (_num_entities)
+   0076 3C            [ 4]   39     inc      a
+   0077 32 00 00      [13]   40     ld      (_num_entities), a
                              41 
-   003B 2A 02 00      [16]   42     ld      hl, (_last_elem_ptr)
-   003E 01 07 00      [10]   43     ld      bc, #entity_size
-   0041 09            [11]   44     add     hl, bc
-   0042 22 02 00      [16]   45     ld      (_last_elem_ptr), hl
+   007A 2A 02 00      [16]   42     ld      hl, (_last_elem_ptr)
+   007D 01 07 00      [10]   43     ld      bc, #entity_size
+   0080 09            [11]   44     add     hl, bc
+   0081 22 02 00      [16]   45     ld      (_last_elem_ptr), hl
                              46 
-   0045 C9            [10]   47     ret
+   0084 C9            [10]   47     ret
                              48 
                              49 ;;INPUT
                              50 ;;  IX -> Array
                              51 ;;  A -> _num_entities
-   0046                      52 entityman_destroy::
-   0046                      53 _destroyloop:
-   0046 F5            [11]   54     push af
-   0047 DD 7E 05      [19]   55     ld      a, 5(ix)
-   004A FE 10         [ 7]   56     cp      #0x10
+   0085                      52 entityman_clear::
+   0085                      53 _clearloop:
+   0085 F5            [11]   54     push af
+   0086 DD 7E 05      [19]   55     ld      a, 5(ix)
+   0089 FE 10         [ 7]   56     cp      #0x10
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 53.
 Hexadecimal [16-Bits]
 
 
 
-   004C 28 02         [12]   57     jr      z, _destroy
-   004E 20 0E         [12]   58     jr      nz, _seguir
-   0050                      59 _destroy:
+   008B 28 02         [12]   57     jr      z, _clear
+   008D 20 0E         [12]   58     jr      nz, _seguir
+   008F                      59 _clear:
                              60     ;;POS SI DA CERO ES QUE HAY QUE LIMPIAR DALE CARLA LIMPIA
-   0050 DD 36 06 00   [19]   61     ld      6(ix), #0x00
-   0054 DD 36 05 00   [19]   62     ld      5(ix), #0x00
-   0058 DD 22 02 00   [20]   63     ld      (_last_elem_ptr), ix
+   008F DD 36 06 00   [19]   61     ld      6(ix), #0x00
+   0093 DD 36 05 00   [19]   62     ld      5(ix), #0x00
+   0097 DD 22 02 00   [20]   63     ld      (_last_elem_ptr), ix
                              64     
-                             65     ;;ld      hl, (_num_entities)
-                             66     ;;dec     hl
-                             67     ;;ld      (_num_entities), hl
-   005C 18 00         [12]   68     jr      _seguir
-   005E                      69 _seguir:
-   005E F1            [10]   70     pop     af
-   005F 3D            [ 4]   71     dec     a
-   0060 C8            [11]   72     ret     z
+                             65     ;;ld      a, (_num_entities)
+                             66     ;;dec     a
+                             67     ;;ld      (_num_entities), a
+   009B 18 00         [12]   68     jr      _seguir
+   009D                      69 _seguir:
+   009D F1            [10]   70     pop     af
+   009E 3D            [ 4]   71     dec     a
+   009F C8            [11]   72     ret     z
                              73 
-   0061 01 07 00      [10]   74     ld      bc, #entity_size
-   0064 DD 09         [15]   75     add     ix, bc
-   0066 18 DE         [12]   76     jr      _destroyloop
-   0068 C9            [10]   77     ret
+   00A0 01 07 00      [10]   74     ld      bc, #entity_size
+   00A3 DD 09         [15]   75     add     ix, bc
+   00A5 18 DE         [12]   76     jr      _clearloop
+   00A7 C9            [10]   77     ret

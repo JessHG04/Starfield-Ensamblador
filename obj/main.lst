@@ -2705,7 +2705,7 @@ Hexadecimal [16-Bits]
                              13 .globl physics_move
                              14 .globl cpct_waitVSYNC_asm
                              15 .globl rendersys_clear
-                             16 .globl entityman_destroy
+                             16 .globl entityman_clear
                              17 
                              18 ;;X, Y, W, H, Vx, Vy, C
                              19 ;;s:      .db 0x00, 0x00, 0x01, 0x02, 0x02, 0x00, 0x0F
@@ -2795,13 +2795,13 @@ Hexadecimal [16-Bits]
                              86 
    00B4 CD 00 00      [17]   87    call entityman_getEntityArray_IX
    00B7 CD 00 00      [17]   88    call entityman_getNumEntities_A
-   00BA CD 00 00      [17]   89    call entityman_destroy
+   00BA CD 00 00      [17]   89    call entityman_clear
                              90 
    00BD CD 00 00      [17]   91    call cpct_waitVSYNC_asm
-                             92    ;;call entityman_getNumEntities_A
-                             93    ;;cp    #0x00
-                             94    ;;ret   z
-                             95    ;;jr    nz, loop
-   00C0 18 E0         [12]   96    jr    loop
-   00C2                      97 looop:
-   00C2 18 FE         [12]   98    jr    .
+   00C0 CD 00 00      [17]   92    call entityman_getNumEntities_A
+   00C3 FE 00         [ 7]   93    cp    #0x00
+   00C5 C8            [11]   94    ret   z
+   00C6 20 DA         [12]   95    jr    nz, loop
+                             96 
+   00C8                      97 looop:
+   00C8 18 FE         [12]   98    jr    .

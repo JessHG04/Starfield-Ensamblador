@@ -3,7 +3,7 @@
 ;; ENTITY MANAGER
 ;;
 entity_size == 7 ;;X, Y, W, H, Vx, Vy, C
-max_entities == 3
+max_entities == 12
 
 _num_entities::     .db 0x00, 0x00
 _last_elem_ptr::    .dw _entity_array
@@ -49,22 +49,22 @@ entityman_create::
 ;;INPUT
 ;;  IX -> Array
 ;;  A -> _num_entities
-entityman_destroy::
-_destroyloop:
+entityman_clear::
+_clearloop:
     push af
     ld      a, 5(ix)
     cp      #0x10
-    jr      z, _destroy
+    jr      z, _clear
     jr      nz, _seguir
-_destroy:
+_clear:
     ;;POS SI DA CERO ES QUE HAY QUE LIMPIAR DALE CARLA LIMPIA
     ld      6(ix), #0x00
     ld      5(ix), #0x00
     ld      (_last_elem_ptr), ix
     
-    ld      hl, (_num_entities)
-    dec     hl
-    ld      (_num_entities), hl
+    ;;ld      a, (_num_entities)
+    ;;dec     a
+    ;;ld      (_num_entities), a
     jr      _seguir
 _seguir:
     pop     af
@@ -73,5 +73,5 @@ _seguir:
 
     ld      bc, #entity_size
     add     ix, bc
-    jr      _destroyloop
+    jr      _clearloop
     ret
