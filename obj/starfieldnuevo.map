@@ -1,0 +1,122 @@
+ASxxxx Linker V03.00 + NoICE + sdld,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000000  .__.ABS.                           
+     00000000  l__DATA                         
+     00000008  entity_size                        cpct_keyboard
+     00000014  max_entities                       cpct_keyboard
+     000000A0  entity_array_size                  cpct_keyboard
+     0000041C  l__CODE                         
+     00004000  s__CODE                         
+     0000441C  s__DATA                         
+     0000C000  CPCT_VMEM_START_ASM                cpct_keyboard
+ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               00004000    0000041C =        1052. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00004000  entity_array                       
+     000040A1  last_ent_ptr                       
+     000040A3  num_entities                       
+     000040A4  ent_getIXPtr                       
+     000040A9  ent_getNumEntities                 
+     000040AD  ent_generate                       
+     000040B5  ent_generator_update               
+     000040BF  ent_create                         
+     000040DA  ent_move                           
+     000040E4  ent_doForAll                       
+     000040FC  random_y_forAll                    
+     0000410F  random_vx_forAll                   
+     00004126  set_for_destruction                
+     00004155  ent_destroy                        
+     0000417F  generar                            cpct_keyboard
+     00004190  estrella                           cpct_keyboard
+     00004197  _main                              cpct_keyboard
+     000041DC  palette                            cpct_keyboard
+     000041EC  render_init                        cpct_keyboard
+     00004201  ent_draw                           cpct_keyboard
+     0000421B  ent_clean                          cpct_keyboard
+     0000422B  cpct_setPalette_asm                cpct_video
+     0000423E  cpct_setPALColour_asm              cpct_video
+     00004248  cpct_drawStringM1_asm              cpct_strings
+     0000426C  cpct_drawCharM1_inner_asm          cpct_strings
+     000042AC  cpct_char2pxM1                     cpct_strings
+     000042BC  _cpct_waitVSYNC                    cpct_video
+     000042BC  cpct_waitVSYNC_asm                 cpct_video
+     000042C4  cpct_setVideoMode_asm              cpct_video
+     000042D1  _cpct_getRandom_xsp40_u8           cpct_random
+     000042D1  cpct_getRandom_xsp40_u8_asm        cpct_random
+     000042D6  _cpct_seed1_xsp40_u8               cpct_random
+     000042D9  _cpct_seed2_xsp40_u8               cpct_random
+     000042F3  _cpct_seed3_xsp40_u8               cpct_random
+     000042F6  _cpct_disableFirmware              cpct_firmware
+     000042F6  _cpct_removeInterruptHandler       cpct_firmware
+     000042F6  cpct_disableFirmware_asm           cpct_firmware
+     000042F6  cpct_removeInterruptHandler_asm    cpct_firmware
+     00004306  cpct_drawSolidBox_asm              cpct_sprites
+     000043AA  _cpct_mode_rom_status              cpct_firmware
+     000043AB  cpct_getScreenPtr_asm              cpct_video
+     000043C7  cpct_setDrawCharM1_asm             cpct_strings
+     00004418  dc_mode1_ct                        
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
+
+Files Linked                              [ module(s) ]
+
+obj/cpctelera_functions.h.rel             [  ]
+obj/entity.h.rel                          [  ]
+obj/entity.rel                            [  ]
+obj/generator.h.rel                       [  ]
+obj/generator.rel                         [ cpct_keyboard ]
+obj/main.rel                              [ cpct_keyboard ]
+obj/render.h.rel                          [  ]
+obj/render.rel                            [ cpct_keyboard ]
+
+
+Libraries Linked                          [ object file ]
+
+/home/jess/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setPalette_asmbindings.rel ]
+/home/jess/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setPALColour_asmbindings.re ]
+/home/jess/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawStringM1_asmbindings.re ]
+/home/jess/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawCharM1_inner.rel ]
+/home/jess/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_waitVSYNC.rel ]
+/home/jess/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setVideoMode_asmbindings.re ]
+/home/jess/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_getRandom_xsp40_u8.rel ]
+/home/jess/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_removeInterruptHandler.rel ]
+/home/jess/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawSolidBox_asmbindings.re ]
+/home/jess/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpc_mode_rom_status.rel ]
+/home/jess/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_getScreenPtr_asmbindings.re ]
+/home/jess/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setDrawCharM1_asmbindings.r ]
+/home/jess/Escritorio/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_dc_mode1_ct.rel ]
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
+
+User Base Address Definitions
+
+_CODE = 0x4000
+_DATA = 0x0000
+
+

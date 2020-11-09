@@ -1,0 +1,19 @@
+XL2
+H 1 areas 10 global symbols
+S set_for_destruction Ref0000
+S max_entities Def0014
+S random_vx_forAll Ref0000
+S ent_generator_update Ref0000
+S random_y_forAll Ref0000
+S ent_create Ref0000
+S ent_getNumEntities Ref0000
+S estrella Ref0000
+S ent_move Ref0000
+S .__.ABS. Def0000
+S ent_destroy Ref0000
+S ent_generate Ref0000
+S entity_array_size Def00A0
+S entity_size Def0008
+S ent_doForAll Ref0000
+S ent_getIXPtr Ref0000
+A _CODE size 0 flags 0 addr 0

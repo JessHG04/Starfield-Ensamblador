@@ -1,0 +1,8 @@
+XL2
+H 1 areas 5 global symbols
+S render_init Ref0000
+S ent_draw Ref0000
+S .__.ABS. Def0000
+S ent_clean Ref0000
+S palette Ref0000
+A _CODE size 0 flags 0 addr 0

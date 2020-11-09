@@ -54,10 +54,10 @@ Symbol Table
     Key_U   =  0405     |     Key_V   =  8006     |     Key_W   =  0807 
     Key_X   =  8007     |     Key_Y   =  0805     |     Key_Z   =  8008 
     PAL_INKR=  0040     |     PAL_PENR=  0000     |     PPI_PORT=  00F5 
-  0 _main      0007 GR  |     cpct_dis   **** GX  |     cpct_dra   **** GX
-    cpct_dra   **** GX  |     cpct_get   **** GX  |     cpct_get   **** GX
-    cpct_pag=  0000     |     cpct_pag=  0010     |     cpct_pag=  0020 
-    cpct_pag=  0030     |     cpct_set   **** GX  |     cpct_set   **** GX
+    cpct_dis   **** GX  |     cpct_dra   **** GX  |     cpct_dra   **** GX
+    cpct_get   **** GX  |     cpct_get   **** GX  |     cpct_pag=  0000 
+    cpct_pag=  0010     |     cpct_pag=  0020     |     cpct_pag=  0030 
+    cpct_set   **** GX  |     cpct_set   **** GX  |     cpct_set   **** GX
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
@@ -66,21 +66,19 @@ Symbol Table
     cpct_set   **** GX  |     cpct_wai   **** GX  |     e_color =  0006 
     e_h     =  0003     |     e_vx    =  0004     |     e_vy    =  0005 
     e_w     =  0002     |     e_x     =  0000     |     e_y     =  0001 
-    ent_clea   **** GX  |     ent_crea   **** GX  |     ent_dest   **** GX
-    ent_doFo   **** GX  |     ent_draw   **** GX  |     ent_gene   **** GX
+  0 ent_clea   003F GR  |     ent_crea   **** GX  |     ent_dest   **** GX
+    ent_doFo   **** GX  |   0 ent_draw   0025 GR  |     ent_gene   **** GX
     ent_gene   **** GX  |     ent_getI   **** GX  |     ent_getN   **** GX
     ent_move   **** GX  |     entity_a=  00A0 G   |     entity_s=  0008 G
-  0 estrella   0000 GR  |     generar    **** GX  |   0 loop       0024 R
-    max_enti=  0014 G   |     opc_DI  =  00F3     |     opc_EI  =  00FB 
-    opc_JR  =  0018     |     opc_LD_D=  0016     |     palette    **** GX
-    random_v   **** GX  |     random_y   **** GX  |     render_i   **** GX
-    set_for_   **** GX
+    estrella   **** GX  |     max_enti=  0014 G   |     opc_DI  =  00F3 
+    opc_EI  =  00FB     |     opc_JR  =  0018     |     opc_LD_D=  0016 
+  0 palette    0000 GR  |     random_v   **** GX  |     random_y   **** GX
+  0 render_i   0010 GR  |     set_for_   **** GX
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE      size   4C   flags    0
-   1 _DATA      size    0   flags    0
+   0 _CODE      size   4F   flags    0
 

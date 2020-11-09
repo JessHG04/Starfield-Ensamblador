@@ -1,0 +1,59 @@
+XL2
+H 1 areas 1F global symbols
+M cpct_keyboard
+S cpct_setPalette_asm Ref0000
+S set_for_destruction Ref0000
+S cpct_setPALColour_asm Ref0000
+S max_entities Def0014
+S cpct_drawStringM1_asm Ref0000
+S random_vx_forAll Ref0000
+S ent_generator_update Ref0000
+S random_y_forAll Ref0000
+S ent_create Ref0000
+S ent_getNumEntities Ref0000
+S estrella Ref0000
+S ent_move Ref0000
+S .__.ABS. Def0000
+S CPCT_VMEM_START_ASM DefC000
+S ent_destroy Ref0000
+S cpct_setVideoMode_asm Ref0000
+S cpct_waitVSYNC_asm Ref0000
+S ent_generate Ref0000
+S cpct_getRandom_xsp40_u8_asm Ref0000
+S entity_array_size Def00A0
+S entity_size Def0008
+S ent_doForAll Ref0000
+S cpct_disableFirmware_asm Ref0000
+S cpct_drawSolidBox_asm Ref0000
+S ent_getIXPtr Ref0000
+S cpct_setDrawCharM1_asm Ref0000
+S cpct_getScreenPtr_asm Ref0000
+A _CODE size 4F flags 0 addr 0
+S render_init Def0010
+S ent_draw Def0025
+S ent_clean Def003F
+S palette Def0000
+T 00 00
+R 00 00 00 00
+T 00 00 14 0A 0B 0B 0B 0B 0B 0B 0B 0B 0B 0B 0B 0B
+R 00 00 00 00
+T 0E 00 0B 0B
+R 00 00 00 00
+T 10 00
+R 00 00 00 00
+T 10 00 0E 00 CD 00 00 21 00 00 11 10 00 CD 00 00
+R 00 00 00 00 02 05 0F 00 00 08 00 00 02 0E 00 00
+T 1E 00 21 10 14 CD 00 00 C9
+R 00 00 00 00 02 06 02 00
+T 25 00
+R 00 00 00 00
+T 25 00 11 00 C0 DD 4E 00 DD 46 01 CD 00 00 EB DD
+R 00 00 00 00 02 0C 1A 00
+T 33 00 7E 06 DD 4E 02 DD 46 03 CD 00 00 C9
+R 00 00 00 00 02 0B 17 00
+T 3F 00
+R 00 00 00 00
+T 3F 00 DD 7E 06 08 DD 36 06 00 CD 25 00 08 DD 77
+R 00 00 00 00 00 0B 00 00
+T 4D 00 06 C9
+R 00 00 00 00
